@@ -256,16 +256,62 @@ body{
 	}
 }
 
-
+.blue{
+	background: $active;
+}
+.toggle{
+	display: block;
+}
 /******************* desltop *********************/
 /*lvl.1*/
 .desktop{
+
 	width: 100%;
 	height: 100%;
 	background: url(../images/deskTopBg-08.jpg);
 	background-size: cover;
 	position: relative;
 	overflow: hidden;
+	.submenu{
+		position:absolute;
+		min-width: 10rem;
+		min-height: 2rem;
+		padding: 1em;
+		padding-right: 0em;
+		padding-left: 0em;
+		padding-top: 0.5em;
+		background: lighten(#373b3e,10%);
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius:5px;
+
+		/* subli var*/
+		>div{
+			margin-top: 0em;
+			font-size:0.9em;
+			height: 0.9rem;
+			padding-right: 2em;
+			padding-left: 1em;
+			padding-top: 0.2em;
+			padding-bottom: 0.2em;
+			cursor: pointer;
+			color: $appleWhite;
+			display: flex;
+			a{
+				text-decoration: none;
+				color: inherit;
+				margin-left: 0.5em;
+			}
+			&:hover{
+				background:$active;
+			};
+			img{
+				width: 10px;
+				height: 9px;
+				/*background: red;*/
+			}
+
+		}
+	}
 	.toolBar{
 		width: 100%;
 		height: 1.5em;
@@ -369,6 +415,7 @@ body{
 	/*background: pink;*/
 	border-bottom-left-radius: $regularRadius;
 	border-bottom-right-radius: $regularRadius;
+	overflow: hidden;
 	.title{
 		height: 2.5rem;
 		background-position: center top;
@@ -393,6 +440,9 @@ body{
 			border-radius: $regularRadius/1.2;
 			border:0.4px solid  rgba($mediumGray, 0.2);
 			box-shadow: 1px 2px 11px rgba($mediumGray, 0.1);
+			text-align: center;
+			font-size: 13px;
+			line-height: 1.8em;
 		}
 	}
 	.safariTabs{
@@ -402,7 +452,7 @@ body{
 	}
 	.safariFrame{
 		width: 100%;
-		height: 90%;
+		height: 94%;
 		background: $appleWhite;
 		border-bottom-left-radius: $regularRadius;
 		border-bottom-right-radius: $regularRadius;
@@ -632,7 +682,7 @@ $dock-width: 25rem;
 	box-sizing: border-box;
 	position: absolute;
 	width:$dock-width;
-	height: 4.3rem;
+	height: 3.6rem;
 	background: $dbg;
 	bottom: 0;
 	padding-top: 0.4em;

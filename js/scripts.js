@@ -23,6 +23,16 @@ var img = {
 	toolbarInfo: "images/toolbar-info.png",
 };
 
+var goList = [
+{ name:"Previous Graphic Work", link: "https://jasonshengblog.wordpress.com/"},
+{ name:	"Project Catalogue", link: "http://sheng.design/catalogue/"},
+{ name:	"Resume", link: "http://resume.minmingsheng.design/"},
+{ name:	"Linkedin", link: "https://ca.linkedin.com/in/minming-sheng-9b1746b2"},
+{ name:	"Github", link:"https://github.com/minmingsheng"},
+{ name:	"Twitter", link:"https://twitter.com/?lang=en"}
+]
+
+
 var bookDesign = [
 	"images/book_design/a.jpg",
 	"images/book_design/b.jpg",
@@ -142,13 +152,22 @@ var leftBtnsImgHover = [
 ]
 
 var icons = [
-	"images/finderIcon.png",
-	"images/githubIcon.png",
-	"images/twitterIcon.png",
-	"images/safariIcon.png",
-	"images/messageIcon.png",
+	// "images/finderIcon.png",
+
+	// "images/safariIcon.png",
+	// "images/messageIcon.png",
+	// "images/dockIcon.png",
+	"images/icatalogue.png",
+	"images/icarrental.png",
+	"images/idevgo.png",
+	"images/iform.png",
+	"images/iragdoll.png",
+	"images/iresume.png",
+	"images/ispace.png",
+
 	"images/LinkedIcon.png",
-	"images/dockIcon.png",
+	"images/githubIcon.png",
+	// "images/twitterIcon.png",
 	// "images/dockIcon-14.png",
 ]
 var btnImg = {
@@ -276,9 +295,9 @@ var Desktop = {
 		ToolBar.addFn(); /*<----------------*/
 		Dock.addFn(); /*<-----------------*/
 		Folder.addFn(); /*<-----------------*/
-		Folder.addFn(); /*<-----------------*/
-		Folder.addFn(); /*<-----------------*/
-		Folder.addFn(); /*<-----------------*/
+		// Folder.addFn(); /*<-----------------*/
+		// Folder.addFn(); /*<-----------------*/
+		// Folder.addFn(); /*<-----------------*/
 		
 	},
 
@@ -973,6 +992,7 @@ var ToolBar = {
 		Desktop.el.appendChild(this.el);
 		this.el.appendChild(toolBarMenu.el()) /*<-----------*/
 		toolBarMenu.activeSideMenu()
+		toolBarMenu.addSubmenu()
 	}
 }
 
@@ -1015,14 +1035,14 @@ var Dock = {
 			})
 			icons[i].addEventListener("mouseout", function(e){
 				if(this.nextSibling){
-					this.nextSibling.style.width = width+"px";
+					this.nextSibling.style.width = width*1.3+"px";
 					this.nextSibling.style.transform = "translate(0,0)"
 				}
 				if(this.previousSibling){
-					this.previousSibling.style.width = width+"px";
+					this.previousSibling.style.width = width*1.3+"px";
 					this.previousSibling.style.transform = "translate(0,0)"
 				}
-				this.style.width = width + "px";
+				this.style.width = width*1.3 + "px";
 				this.style.transform = "translate(0,0)";
 				this.style.transiition = "all 0.5s ease";
 				document.querySelector(".dock").style.width = dockWidth+"px";
@@ -1033,27 +1053,42 @@ var Dock = {
 			icons[i].addEventListener('click', function(){
 				console.log("this.dataset.id", this.dataset.id);
 				var dd = this.dataset.id;
+
 				var url = function(){
 					switch(dd) {
-					    case "finderIcon":
-					        return null
+					    case "icarrental":
+					        return ["http://sheng.design/intro-carrental/", "Car Rental"]
+					        break;
+					    case "icatalogue":
+					        return ["http://sheng.design/catalogue/", "Catalogue"];
+					        break;
+					    case "ispace":
+					        return ["http://sheng.design/intro-spacexyz/", "Space"];
+					        break;
+					    case "iform":
+					        return ["http://sheng.design/intro-form/", "Form"];
+					        break;
+					    case "iresume":
+					        return ["http://sheng.design/intro-resume/", "resume"];
+					        break;
+					    case "iragdoll":
+					        return ["http://sheng.design/intro-ragdoll/", "Ragdoll"];
+					        break;
+					    case "idevgo":
+					        return ["http://sheng.design/intro-devgo/", "DevGo"];
 					        break;
 					    case "githubIcon":
-					        return "http://sheng.design/catalogue/";
+					        window.location = "https://github.com/minmingsheng"; 
+					        return null;
 					        break;
 					    case "LinkedIcon":
-					        return "https://space-xyz.herokuapp.com";
-					        break;
-					    case "safariIcon":
-					        return "http://minmingsheng.design/form/form.html";
-					        break;
-					    case "twitterIcon":
-					        return "http://resume.minmingsheng.design";
+					       window.location = "https://ca.linkedin.com/in/minming-sheng-9b1746b2"; 
 					        break;
 					    default:
-					    return null
+					    return "http://sheng.design/intro-carrental/"
 					}
 				};
+				url();
 				this.style.animation = "openApp 1.1s 4  ease";
 				if(this.nextSibling){
 					this.nextSibling.style.width = width+"px";
@@ -1067,9 +1102,11 @@ var Dock = {
 				this.style.transform = "translate(0,0)";
 				this.style.transiition = "all 0.5s ease";
 				document.querySelector(".dock").style.width = dockWidth+"px";
+				var _this = this;
 				animated(this, function(){
+					_this.style.animation = "";
 					 /*open safiri*/
-					Safari.addFn(url());
+					Safari.addFn(url()[0],url()[1]);
 					Safari.close();
 					Safari.max();
 				})
@@ -1081,7 +1118,10 @@ var Dock = {
 var Safari = {
 	// el: document.createElement("div"),
 	className: ["window", "safari"],
-	addFn: function(url){
+	addFn: function(url, name){
+		if(url == null){
+			return;
+		}
 		/*window*/
 		var el = document.createElement("div");
 		/*style*/
@@ -1141,6 +1181,7 @@ var Safari = {
 
 		/*safariAddress*/
 		var safariAddress = document.createElement("div");
+		safariAddress.textContent = name;
 		safariAddress.classList.add("safariAddress");
 		title.appendChild(safariAddress);
 
@@ -1150,7 +1191,7 @@ var Safari = {
 		var safariTabs = document.createElement("div");
 		safariTabs.classList.add("safariTabs");
 		safariTabs.textContent = '';
-		el.appendChild(safariTabs);
+		// el.appendChild(safariTabs);
 
 		var safariFrame = document.createElement("iframe");
 		safariFrame.classList.add("safariFrame");
@@ -1349,7 +1390,52 @@ var toolBarMenu = {
 			}
 			document.querySelector('.realtime').innerHTML =hours() +":"+minutes()+":"+ seconds(); 		
 		}, 1000)
-	}
+	},
+	addSubmenu: function(){
+		var menu = document.querySelector(".menu");
+		var go = true;
+		menu = menu.children[0].children;
+		for (var i = 0; i < menu.length; i++) {
+			// menu[i].classList.add("submenu");
+			console.log(menu[i].textContent);
+			menu[i].addEventListener("click", function(){
+				if(this.textContent == "Go"){
+					/*toggle bakground*/
+					this.classList.toggle("blue");
+
+					var sub = document.createElement("div");
+					/*====sub style===*/
+					var btnLeft = this.getClientRects()[0].left;
+					sub.style.left = btnLeft+ "px";
+					/*====add child el( populate go list)=====*/
+					for (var i = 0; i < goList.length; i++) {
+						var subli = document.createElement("div");
+						subli.innerHTML = "<img src='images/link-09.png' \
+						 />"
+						var p = document.createElement("a");
+						p.textContent = goList[i].name;
+						p.setAttribute("href", goList[i].link);
+						p.setAttribute("target", "_blank");
+						subli.appendChild(p);
+						sub.appendChild(subli);
+					};
+					sub.classList.add("submenu");
+					if(go){
+						document.querySelector(".desktop").appendChild(sub);
+						go = false;
+					}else{
+						document.querySelector(".submenu").remove();
+						go = true;
+					}
+					
+				}	
+			})
+			
+		};
+		console.log("menu.children:", menu);
+	},
+
+
 }
 // child of Desktop
 var sideMenu = {
@@ -1606,3 +1692,4 @@ function ajax(url, fn){
   xhttp.open("GET", url, true);
   xhttp.send();
 }
+
