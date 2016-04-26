@@ -31,6 +31,59 @@ var goList = [
 { name:	"Github", link:"https://github.com/minmingsheng"},
 { name:	"Twitter", link:"https://twitter.com/?lang=en"}
 ]
+var fileList = [
+{ name:"App Design Prototype.pdf", link: "http://sheng.design/pdf/AppDeisgnPrototype.pdf"},
+{ name:	"Watch App design", link: "http://sheng.design/pdf/watchDesign.pdf"},
+{ name:	"Case study.pdf", link: "http://sheng.design/pdf/caseStudy.pdf"},
+{ name:	"Interface critique.pdf", link: "http://sheng.design/pdf/InterfaceCritique.pdf"},
+{ name:	"Kiosk Design.pdf", link:"http://sheng.design/pdf/kioskdesign.pdf"},
+{ name:	"Resume.pdf", link:"http://sheng.design/pdf/resume.pdf"},
+]
+
+var jasonOS = [
+	{
+		name: "About jasonOS",
+		des: "<p>version : 0.0.1</p>\
+<p>This is my own platform to present my own work, everything is created by my self. I'm trying use\
+pure javascript to create reusable component for practice. If it is possible, I want it to be a CMS in the future.</p>"
+	}
+]
+var aboutList = [
+	{
+		name: "Minming Sheng",
+		des: "Minming Sheng is my full name,\
+Call me minming or Jason."
+	},
+	{
+		name: "Contact",
+		des: "minming.ca@gmail.com"
+	},
+	{
+		name: "Good education",
+		des: "Just graduated in Sheridan College for Post-graducate certification.\
+Previously I graduated in NASCAD, Halifax and Shanghai university, Shanghai."
+	},
+	{
+		name: "Based in Toronto",
+		des:"Now I live in Toronto."
+	},
+	{
+		name: "UX/UI designer",
+		des: "I think I have a not bad sense of design, I love design. In my mind. Deisgn is not just do something\
+fancy, in stead, it is to solove problem. Make things fancy is just merely one part of whole process."
+	},
+	{
+		name: "Junior Web developer",
+		des: "I just started learn programming last year. I love programming. Eager to be a full stack developer. \
+So I usually force myself not to use any library and plugin to practice \
+coding, I hate to copy and paste other people's code without any understanding, it is not responsible for myself, especially\
+during learning step."
+	},
+	{
+		name: "Interdisciplinary designer",
+		des: "<p>Interdisciplinary designers' areas are never limited, they use design thinking to define and solve problems. They are T-shape designers."
+	}
+]
 
 
 var bookDesign = [
@@ -1324,7 +1377,7 @@ var DockIcon = {
 }
 // child of ToolBar
 var toolBarMenu = {
-	leftTemplate: "<div><img src=" + img.apple + "  /></div><div>JASON</div><div>File</div><div>Edit</div><div>View</div><div>Go</div><div>Window</div><div>About Me</div>",
+	leftTemplate: "<div><img src=" + img.apple + "  /></div><div>jasonOS</div><div>File</div><div style='opacity:0.4'>View</div><div>Go</div><div style='opacity:0.4'>Window</div><div>About Me</div>",
 	rightTemplate: "<div class='day'>Tue</div><div class='month'>Apr</div><div class='realtime'>00:00:00</div><div><img src="+ img.ampifier +"  /></div><div><img class='sidemenu' src="+ img.sidemenu +"  /></div>",
 	el : function(){
 		var el = document.createElement("div");
@@ -1394,11 +1447,13 @@ var toolBarMenu = {
 	addSubmenu: function(){
 		var menu = document.querySelector(".menu");
 		var go = true;
+		var about = true;
 		menu = menu.children[0].children;
 		for (var i = 0; i < menu.length; i++) {
 			// menu[i].classList.add("submenu");
 			console.log(menu[i].textContent);
 			menu[i].addEventListener("click", function(){
+				/*-------go------------*/
 				if(this.textContent == "Go"){
 					/*toggle bakground*/
 					this.classList.toggle("blue");
@@ -1416,6 +1471,162 @@ var toolBarMenu = {
 						p.textContent = goList[i].name;
 						p.setAttribute("href", goList[i].link);
 						p.setAttribute("target", "_blank");
+						subli.appendChild(p);
+						sub.appendChild(subli);
+					};
+					sub.classList.add("submenu");
+					if(go){
+						document.querySelector(".desktop").appendChild(sub);
+						go = false;
+					}else{
+						document.querySelector(".submenu").remove();
+						go = true;
+					}
+					
+				}	
+				/*---------about me--------*/
+				if(this.textContent == "About Me"){
+					/*toggle bakground*/
+					this.classList.toggle("blue");
+
+					var sub = document.createElement("div");
+					/*====sub style===*/
+					var btnLeft = this.getClientRects()[0].left;
+					sub.style.left = btnLeft+ "px";
+					/*====add child el( populate go list)=====*/
+					for (var i = 0; i < aboutList.length; i++) {
+						var subli = document.createElement("div");
+						subli.innerHTML = "<img src='images/whiteProtrait.png' \
+						 />"
+						var p = document.createElement("a");
+						p.textContent = aboutList[i].name;
+						p.setAttribute("data-des", aboutList[i].des);
+						
+						p.addEventListener("click", function(){
+							var infoTemplate = "<div class='title'></div><div class='body'><div><img src="+ img.toolbarInfo +"  /></div><div>\
+							<h1>"+this.textContent+"</h1>\
+							<p>"+this.getAttribute("data-des")+"</p>\
+							<button>ok</button></div></div>";
+							infoWindow.addFn(infoTemplate);
+							infoWindow.buttonFn();
+							infoWindow.drag();
+						})
+
+						subli.appendChild(p);
+						sub.appendChild(subli);
+					};
+					sub.classList.add("submenu");
+					if(about){
+						document.querySelector(".desktop").appendChild(sub);
+						about = false;
+					}else{
+						document.querySelector(".submenu").remove();
+						about = true;
+					}
+					
+				}	
+				if(this.textContent == "jasonOS"){
+					/*toggle bakground*/
+					this.classList.toggle("blue");
+
+					var sub = document.createElement("div");
+					/*====sub style===*/
+					var btnLeft = this.getClientRects()[0].left;
+					sub.style.left = btnLeft+ "px";
+					/*====add child el( populate go list)=====*/
+					for (var i = 0; i < jasonOS.length; i++) {
+						var subli = document.createElement("div");
+						subli.innerHTML = "<img src='images/questionMark-23.png' \
+						 />"
+
+						var p = document.createElement("a");
+						p.textContent = jasonOS[i].name;
+						p.setAttribute("data-des", jasonOS[i].des);
+						
+						p.addEventListener("click", function(){
+							var infoTemplate = "<div class='title'></div><div class='body'><div><img src="+ img.portrait +"  /></div><div>\
+							<h1>"+this.textContent+"</h1>\
+							<p>"+this.getAttribute("data-des")+"</p>\
+							<button>ok</button></div></div>";
+							infoWindow.addFn(infoTemplate);
+							infoWindow.buttonFn();
+							infoWindow.drag();
+						})
+
+						subli.appendChild(p);
+						sub.appendChild(subli);
+					};
+					sub.classList.add("submenu");
+					if(go){
+						document.querySelector(".desktop").appendChild(sub);
+						go = false;
+					}else{
+						document.querySelector(".submenu").remove();
+						go = true;
+					}
+					
+				}	
+
+				/*---------File------------*/
+				if(this.textContent == "File"){
+					/*toggle bakground*/
+					this.classList.toggle("blue");
+
+					var sub = document.createElement("div");
+					/*====sub style===*/
+					var btnLeft = this.getClientRects()[0].left;
+					sub.style.left = btnLeft+ "px";
+					/*====add child el( populate go list)=====*/
+					for (var i = 0; i < fileList.length; i++) {
+						var subli = document.createElement("div");
+						subli.innerHTML = "<img src='images/link-09.png' \
+						 />"
+						var p = document.createElement("a");
+						p.textContent = fileList[i].name;
+						p.setAttribute("href", fileList[i].link);
+						p.setAttribute("target", "_blank");
+						subli.appendChild(p);
+						sub.appendChild(subli);
+					};
+					sub.classList.add("submenu");
+					if(go){
+						document.querySelector(".desktop").appendChild(sub);
+						go = false;
+					}else{
+						document.querySelector(".submenu").remove();
+						go = true;
+					}
+					
+				}	
+
+				/*---------about me--------*/
+				if(this.textContent == "About Me"){
+					/*toggle bakground*/
+					this.classList.toggle("blue");
+
+					var sub = document.createElement("div");
+					/*====sub style===*/
+					var btnLeft = this.getClientRects()[0].left;
+					sub.style.left = btnLeft+ "px";
+					/*====add child el( populate go list)=====*/
+					for (var i = 0; i < aboutList.length; i++) {
+						var subli = document.createElement("div");
+						subli.innerHTML = "<img src='images/whiteProtrait.png' \
+						 />"
+						var p = document.createElement("a");
+						p.textContent = aboutList[i].name;
+						p.setAttribute("data-des", aboutList[i].des);
+						
+						p.addEventListener("click", function(){
+							var infoTemplate = "<div class='title'></div><div class='body'><div><img src="+ img.toolbarInfo +"  /></div><div>\
+							<h1>"+this.textContent+"</h1>\
+							<p>"+this.getAttribute("data-des")+"</p>\
+							<button>ok</button></div></div>";
+							infoWindow.addFn(infoTemplate);
+							infoWindow.buttonFn();
+							infoWindow.drag();
+						})
+
 						subli.appendChild(p);
 						sub.appendChild(subli);
 					};
@@ -1544,7 +1755,9 @@ var todayBody = {
 	},
 	clickQuestionFn: function(){
 		document.querySelector('.interQuestion').addEventListener("click", function	(){
-			infoWindow.addFn();
+			var infoTemplate = "<div class='title'></div><div class='body'><div><img src="+ img.toolbarInfo +"  /></div><div>\
+		<h1>I'm an Interdisciplinary Designer</h1><p>Interdisciplinary designers' areas are never limited, they use design thinking to define and solve problems. They are T-shape designers </p><button>ok</button></div></div>";
+			infoWindow.addFn(infoTemplate);
 			infoWindow.buttonFn();
 			infoWindow.drag();
 		})
@@ -1569,7 +1782,7 @@ var todayTitle = {
 				var title = document.createElement("div");
 				title.classList.add(prop.replace(" ", ''));
 				title.classList.add("todayTitles");
-				title.innerHTML = "<h1>"+prop+"</h1>";/*<-----------Education*/
+				title.innerHTML = "<h1>"+prop+"</h1>";/*<-----------*/
 				if(prop == "Education"){
 					var text = document.createElement("div");
 					resume[prop].map(function(e){
@@ -1621,13 +1834,12 @@ var todayTitle = {
 var infoWindow = {
 	el: document.createElement("div"),
 	className: ["window", "info-window"],
-	addFn: function(){
+	addFn: function(temp){
 		this.el.classList.add(this.className[0]);
 		this.el.classList.add(this.className[1]);
 		this.el.style.top = "30%"
 		this.el.style.left = "30%";
-		this.el.innerHTML = "<div class='title'></div>"
-		this.el.innerHTML += "<div class='body'><div><img src="+ img.toolbarInfo +"  /></div><div><h1>Interdisciplinary Designer</h1><p>Interdisciplinary designers' areas are never limited, they use design thinking to define and solve problems. They are T-shape designers </p><button>ok</button></div></div>"
+		this.el.innerHTML = temp;
 		Desktop.el.appendChild(this.el);
 	},
 	buttonFn: function(){

@@ -106,6 +106,7 @@ button{
 	font-size: $xFont;
 	position: absolute;
 	right: 2rem;
+	bottom: 1em;
 	&:active{
 		background: url(../images/buleButon-27.png) center no-repeat;
 		background-size: 100%;
@@ -276,14 +277,14 @@ body{
 		position:absolute;
 		min-width: 10rem;
 		min-height: 2rem;
-		padding: 1em;
+		padding-bottom: 0.4em;
 		padding-right: 0em;
 		padding-left: 0em;
 		padding-top: 0.5em;
 		background: lighten(#373b3e,10%);
 		border-bottom-left-radius: 5px;
 		border-bottom-right-radius:5px;
-
+		z-index: 100000;
 		/* subli var*/
 		>div{
 			margin-top: 0em;
@@ -1030,13 +1031,14 @@ $width-slideMenu: 22em;
 /************************windows********************/
 .info-window{
 	.body{
-		height: 9rem;
+		min-height: 9rem;
 		width: 99.6%;
 		background: $window-light;
 		border:0.3px solid darken( $window-light, 22);
 		display: flex;
 		border-bottom-left-radius: $regularRadius;
 		border-bottom-right-radius: $regularRadius;
+		padding-bottom: 1rem;
 		div:nth-child(1){
 			flex:1;
 			/*background: red;*/
@@ -1050,6 +1052,8 @@ $width-slideMenu: 22em;
 			flex:2;
 			padding: 1rem;
 			padding-left: 0rem;
+			min-height: 3rem;
+			padding-bottom: 1rem;
 			h1{
 				font-weight: $medium;
 				color: $normalFontColor;
@@ -1057,9 +1061,11 @@ $width-slideMenu: 22em;
 			p{	
 				margin-top: 1em;
 				letter-spacing: 1px;
-				line-height: 1.3em;
+				line-height: 2em;
+				padding-right: 1rem;
 				color: rgba($normalFontColor, 0.8);;
 				font-size: $xsFont;
+				margin-bottom: 2rem;
 			}
 
 		}
