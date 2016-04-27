@@ -3,6 +3,7 @@
 // ****************************************************************************
 var tabToday = true;
 var tabNotifications = false;
+var flip;
 
 
 // ****************************************************************************
@@ -23,6 +24,9 @@ var img = {
 	toolbarInfo: "images/toolbar-info.png",
 };
 
+
+
+
 var goList = [
 { name:"Previous Graphic Work", link: "https://jasonshengblog.wordpress.com/"},
 { name:	"Project Catalogue", link: "http://sheng.design/catalogue/"},
@@ -33,7 +37,7 @@ var goList = [
 ]
 var fileList = [
 { name:"App Design Prototype.pdf", link: "http://sheng.design/pdf/AppDeisgnPrototype.pdf"},
-{ name:	"Watch App design", link: "http://sheng.design/pdf/watchDesign.pdf"},
+{ name:	"Watch App design.pdf", link: "http://sheng.design/pdf/watchDesign.pdf"},
 { name:	"Case study.pdf", link: "http://sheng.design/pdf/caseStudy.pdf"},
 { name:	"Interface critique.pdf", link: "http://sheng.design/pdf/InterfaceCritique.pdf"},
 { name:	"Kiosk Design.pdf", link:"http://sheng.design/pdf/kioskdesign.pdf"},
@@ -44,8 +48,8 @@ var jasonOS = [
 	{
 		name: "About jasonOS",
 		des: "<p>version : 0.0.1</p>\
-<p>This is my own platform to present my own work, everything is created by my self. I'm trying use\
-pure javascript to create reusable component for practice. If it is possible, I want it to be a CMS in the future.</p>"
+<p>This is my own platform to present my own work, everything is created by my self. I'm trying to use\
+ pure javascript to create reusable component for practice. If it is possible, I want it to be a CMS in the future when I learn more.</p>"
 	}
 ]
 var aboutList = [
@@ -69,15 +73,15 @@ Previously I graduated in NASCAD, Halifax and Shanghai university, Shanghai."
 	},
 	{
 		name: "UX/UI designer",
-		des: "I think I have a not bad sense of design, I love design. In my mind. Deisgn is not just do something\
-fancy, in stead, it is to solove problem. Make things fancy is just merely one part of whole process."
+		des: "I think I have a not bad sense of design, I love design. In my mind, deisgn is not just do something\
+ fancy, in stead, it is to solove problems. Make things fancy is just merely one part of whole process."
 	},
 	{
 		name: "Junior Web developer",
 		des: "I just started learn programming last year. I love programming. Eager to be a full stack developer. \
-So I usually force myself not to use any library and plugin to practice \
+So I usually force myself not to use any libraryies and plugins to practice \
 coding, I hate to copy and paste other people's code without any understanding, it is not responsible for myself, especially\
-during learning step."
+ during learning step."
 	},
 	{
 		name: "Interdisciplinary designer",
@@ -86,95 +90,250 @@ during learning step."
 ]
 
 
-var bookDesign = [
-	"images/book_design/a.jpg",
-	"images/book_design/b.jpg",
-	"images/book_design/c.jpg",
-	"images/book_design/d.jpg",
-	"images/book_design/e.jpg",
-	"images/book_design/f.jpg",
-	"images/book_design/g.jpg",
-	"images/book_design/h.jpg",
-	"images/book_design/i.jpg",
-	"images/book_design/j.jpg",
-	"images/book_design/k.jpg",
-	"images/book_design/l.jpg",
+
+
+var printing = [
+	{
+		type: "jpg",
+		name:"book design",
+		date:"2015",
+		src: "images/printing/1.jpg"
+	},
+	{
+		type: "jpg",
+		name:"book design",
+		date:"2015",
+		src: "images/printing/2.jpg"
+	},
+	{
+		type: "jpg",
+		name:"book design",
+		date:"2015",
+		src: "images/printing/3.jpg"
+	},
+	{
+		type: "jpg",
+		name:"CD cover",
+		date:"2014",
+		src: "images/printing/cdCover.jpg"
+	},
+	{
+		type: "jpg",
+		name:"Five element(fire)",
+		date:"2014",
+		src: "images/printing/huo.jpg"
+	},
+	{
+		type: "jpg",
+		name:"Five element(golden)",
+		date:"2014",
+		src: "images/printing/jin.jpg"
+	},
+	{
+		type: "jpg",
+		name:"Five element(wood)",
+		date:"2014",
+		src: "images/printing/mu.jpg"
+	},
+	{
+		type: "jpg",
+		name:"Five element(water)",
+		date:"2014",
+		src: "images/printing/shui.jpg"
+	},
+	{
+		type: "jpg",
+		name:"Five element(earth)",
+		date:"2014",
+		src: "images/printing/tu.jpg"
+	}
 ]
 
-var bookDesignInfo = [
-{
-	name: "a.jpg",
-	date: "2015",
-	kind:"graphics"
+var poster = [
+	{
+		type: "jpg",
+		name:"studentUnion1",
+		date:"2016",
+		src: "images/poster/studentUnion1.jpg"
+	},
+	{
+		type: "jpg",
+		name:"studentUnion2",
+		date:"2016",
+		src: "images/poster/studentUnion2.jpg"
+	},
+	{
+		type: "jpg",
+		name:"studentUnion3",
+		date:"2016",
+		src: "images/poster/studentUnion3.jpg"
+	},
+	{
+		type: "jpg",
+		name:"studentUnion4",
+		date:"2016",
+		src: "images/poster/studentUnion4.jpg"
+	},
+	{
+		type: "jpg",
+		name:"studentUnion5",
+		date:"2016",
+		src: "images/poster/studentUnion5.jpg"
+	},
+	{
+		type: "jpg",
+		name:"socialA",
+		date:"2015",
+		src: "images/poster/socialA.jpg"
+	},
+	{
+		type: "jpg",
+		name:"socialB",
+		date:"2015",
+		src: "images/poster/socialB.jpg"
+	},
+	{
+		type: "jpg",
+		name:"music",
+		date:"2015",
+		src: "images/poster/music.jpg"
+	},
+	{
+		type: "jpg",
+		name:"chickenSculpture",
+		date:"2015",
+		src: "images/poster/chickenSculpture.jpg"
+	},
+	{
+		type: "jpg",
+		name:"bubbleTea",
+		date:"2015",
+		src: "images/poster/bubbleTea.jpg"
+	}
+]
+var digitaldrawing = [
+	{
+		type: "jpg",
+		name:"dragonA",
+		date:"2016",
+		src: "images/drawing/dragonA.jpg"
+	},
+	{
+		type: "jpg",
+		name:"dragonB",
+		date:"2016",
+		src: "images/drawing/dragonB.jpg"
+	},
+	{
+		type: "jpg",
+		name:"girlA",
+		date:"2016",
+		src: "images/drawing/girlA.jpg"
+	},
+	{
+		type: "jpg",
+		name:"girlB",
+		date:"2016",
+		src: "images/drawing/girlB.jpg"
+	},
+	{
+		type: "jpg",
+		name:"killerA",
+		date:"2016",
+		src: "images/drawing/killerA.jpg"
+	},
+	{
+		type: "jpg",
+		name:"killerB",
+		date:"2015",
+		src: "images/drawing/killerB.jpg"
+	},
+	{
+		type: "jpg",
+		name:"ragdoll(colorpoint)",
+		date:"2015",
+		src: "images/drawing/ragdoll(colorpoint).jpg"
+	},
+	{
+		type: "jpg",
+		name:"ragdoll(mitted)",
+		date:"2015",
+		src: "images/drawing/ragdoll(mitted).jpg"
+	},
+	{
+		type: "jpg",
+		name:"ragdoll(bicolor)",
+		date:"2015",
+		src: "images/drawing/ragdoll(bicolor).jpg"
+	}
 
-},
-{
-	name: "b.jpg",
-	date: "2015",
-	kind:"graphics"
-
-},
-{
-	name: "c.jpg",
-	date: "2015",
-	kind:"graphics"
-
-},
-{
-	name: "d.jpg",
-	date: "2015",
-	kind:"graphics"
-
-},
-{
-	name: "e.jpg",
-	date: "2015",
-	kind:"graphics"
-
-},
-{
-	name: "f.jpg",
-	date: "2015",
-	kind:"graphics"
-
-},
-{
-	name: "g.jpg",
-	date: "2015",
-	kind:"graphics"
-
-},
-{
-	name: "h.jpg",
-	date: "2015",
-	kind:"graphics"
-
-},
-{
-	name: "i.jpg",
-	date: "2015",
-	kind:"graphics"
-
-},
-{
-	name: "j.jpg",
-	date: "2015",
-	kind:"graphics"
-
-},
-{
-	name: "k.jpg",
-	date: "2015",
-	kind:"graphics"
-
-},
-{
-	name: "l.jpg",
-	date: "2015",
-	kind:"graphics"
-
-},
-
+]
+var demo = [
+	{
+		type: "sound,three.js",
+		name:"visualization",
+		date:"2016",
+		link: "http://sheng.design/three/sound-visualization.html",
+		src: "images/demo/visualizaion.png"
+	},
+	{
+		type: "three.js",
+		name:"openHouse demo",
+		date:"2016",
+		link: "http://sheng.design/demo(three.js)/",
+		src: "images/demo/openHouse.png"
+	},
+	{
+		type: "Create.js",
+		name:"Portrait",
+		date:"2016",
+		link: "http://sheng.design/portrait/",
+		src: "images/demo/portrait.png"
+	},
+	{
+		type: "three.js",
+		name:"particle",
+		date:"2016",
+		link: "http://sheng.design/three/assign.html",
+		src: "images/demo/parcicle.png"
+	},
+	{
+		type: "three.js",
+		name:"galaxy",
+		date:"2016",
+		link: "http://sheng.design/three/galaxy.html",
+		src: "images/demo/galaxy.png"
+	}
+]
+var practice = [
+	{
+		type: "css",
+		name:"Book effect",
+		date:"2016",
+		link: "http://sheng.design/practice/book/",
+		src: "images/practice/practice.png"
+	},
+	{
+		type: "Js, css",
+		name:"Elastic sliders",
+		date:"2016",
+		link: "http://sheng.design/practice/elastic-slide/",
+		src: "images/practice/sliders.png"
+	},
+	{
+		type: "css",
+		name:"Portrait",
+		date:"2016",
+		link: "http://sheng.design/practice/flip/",
+		src: "images/practice/rotate.png"
+	},
+	{
+		type: "three.js",
+		name:"particle",
+		date:"2016",
+		link: "http://sheng.design/portfoliopractise/",
+		src: "images/practice/potfolio.png"
+	}
 ]
 
 var forderImg = {
@@ -205,7 +364,6 @@ var leftBtnsImgHover = [
 ]
 
 var icons = [
-	// "images/finderIcon.png",
 
 	// "images/safariIcon.png",
 	// "images/messageIcon.png",
@@ -220,6 +378,7 @@ var icons = [
 
 	"images/LinkedIcon.png",
 	"images/githubIcon.png",
+	"images/finderIcon.png"
 	// "images/twitterIcon.png",
 	// "images/dockIcon-14.png",
 ]
@@ -228,6 +387,8 @@ var btnImg = {
 	shut: "images/shut-06.png",
 	restart: "images/restart-05.png",
 }
+
+var folderList = ["Printing", "Poster", "Digital Drawing", "Practice", "Demo"]
 // ****************************************************************************
 // *                                 component                                *
 // ****************************************************************************
@@ -347,12 +508,43 @@ var Desktop = {
 		document.body.appendChild(this.el);
 		ToolBar.addFn(); /*<----------------*/
 		Dock.addFn(); /*<-----------------*/
-		Folder.addFn(); /*<-----------------*/
-		// Folder.addFn(); /*<-----------------*/
-		// Folder.addFn(); /*<-----------------*/
-		// Folder.addFn(); /*<-----------------*/
-		
+	
+		for (var i = folderList.length - 1; i >= 0; i--) {
+			Folder.addFn(i*130+30,window.innerWidth/4, folderList[i]);
+		};
+
+		var infoTemplate = "<div class='title'></div><div class='body'><div><img src="+ img.toolbarInfo +"  /></div><div>\
+		<h1>"+"Jason welcomes you!"+"</h1>\
+		<p>"+"Jason just finish Interaction Multimedia Management in Sheridan College.\
+ Now He is available for you! He can draw. He can design. He can program!"+"</p>\
+		<div class='plsopen'>Open work catalogue</div></div></div>";
+		infoWindow.addFn(infoTemplate);
+		infoWindow.drag();
+		this.open();
 	},
+	open: function(){
+		var a = document.querySelector('.plsopen');
+		a.addEventListener("click", function(){
+			var app = document.querySelector(".icons[data-id='icatalogue']");
+			app.style.animation = "openApp 1.1s 4  ease";
+			// app.style.width = width + "px";
+			app.style.transform = "translate(0,0)";
+			app.style.transiition = "all 0.5s ease";
+			// document.querySelector(".dock").style.width = dockWidth+"px";
+			// var _this = this;
+			animated(app, function(){
+				app.style.animation = "";
+				 /*open safiri*/
+				 console.log("openeeneennnnn!");
+				Safari.addFn("http://sheng.design/catalogue","catalogue");
+				Safari.close();
+				Safari.max();
+			})
+			console.log("appppppp:", app);
+			this.parentElement.parentElement.parentElement.remove();
+		})
+		console.log("a:::::",a);
+	}
 
 }
 
@@ -360,8 +552,10 @@ var Folder = {
 	el: "",
 	template: "",
 	className: ["folder"],
-	addFn: function(){
+	addFn: function(x,y, name){
 		this.el = document.createElement("div");
+		this.el.setAttribute("data-id", name.replace(" ", '').toLowerCase())
+
 		console.log("jaosn");
 		this.el.classList.add(this.className[0]);
 		this.el.innerHTML = "";
@@ -372,15 +566,19 @@ var Folder = {
 
 		var p = document.createElement("p");
 		p.setAttribute("class", "title");
-		p.textContent = "folder"
+		p.textContent = name;
 		this.el.appendChild(p);
 
-		this.el.style.top = "30px";
-		this.el.style.left = "30px";
+		this.el.style.top = y+"px";
+		this.el.style.left =x+"px";
 
 		/*open folder*/
 		this.el.addEventListener("dblclick", function(){
-			Finder.addFn();
+			console.log("folder:",this.textContent);
+			var folderName = this.textContent;
+			var id = folderName.replace(" ", "").toLowerCase();
+			console.log("iddidididd", id);
+			Finder.addFn(folderName, id);
 		})
 
 		Desktop.el.appendChild(this.el);
@@ -442,14 +640,14 @@ var Folder = {
 var Finder = {	
 	el: "",
 	className: ["window","finder"],
-	addFn: function(){
+	addFn: function(folderName, folderid){
 		this.el = document.createElement("div");
 		this.el.classList.add(this.className[0]);
 		this.el.classList.add(this.className[1]);
 		this.el.innerHTML = "";
 		this.el.style.top = "10px";
 		this.el.style.left = "10px";
-
+		this.el.style.zIndex = "1000";
 		var title = document.createElement("div");
 		title.setAttribute("class", "title");
 
@@ -488,7 +686,7 @@ var Finder = {
 
 		var folderTitleContainer = document.createElement('div');
 		folderTitleContainer.classList.add("folderTitleContainer");
-		folderTitleContainer.innerHTML = "<img src = "+forderImg.folder+" /> <p class = 'folderTitleP'>untitled</p>"
+		folderTitleContainer.innerHTML = "<img src = "+forderImg.folder+" /> <p class = 'folderTitleP'>"+folderName+"</p>"
 		folderTitle.appendChild(folderTitleContainer);		
 
 		title.appendChild(folderTitle);
@@ -527,6 +725,45 @@ var Finder = {
 		var leftPart = document.createElement("div");
 		leftPart.classList.add("leftPart");
 
+		/*----- left part content ----*/
+		
+		var that = this;
+		for (var i = folderList.length - 1; i >= 0; i--) {
+				var ll = document.createElement("div");
+				ll.classList.add("ll")
+				ll.textContent = folderList[i];
+				if(folderList[i] == folderName){
+					ll.classList.add("llactive")
+
+				}
+
+				ll.addEventListener("click", function(){
+					var allLls  = document.querySelectorAll(".ll");
+					for (var i = allLls.length - 1; i >= 0; i--) {
+						allLls[i].classList.remove("llactive");
+						// Finder.addFn(this.textContent, this.textContent.replace(" ", "").toLowerCase());
+
+					};
+					this.classList.add("llactive");
+					var rp = this.parentElement.parentElement.querySelector(".rightPart");
+					console.log(":thishishitishtishtsitsihtsith",  rp);
+					rp.innerHTML = "";
+
+
+					that.swipeLayout(this.parentElement.parentElement, this.textContent.replace(" ", "").toLowerCase());
+
+					return
+
+				})
+				leftPart.appendChild(ll);
+		};
+
+
+
+
+
+
+
 		finderBody.appendChild(leftPart);
 		var rightPart = document.createElement("div");
 		rightPart.classList.add("rightPart");
@@ -552,7 +789,7 @@ var Finder = {
 		 this.drag();
 		 this.resize();
 		 this.index();
-		 this.activeLayout();
+		 this.activeLayout(folderid);
 
 	},
 	resize: function(){
@@ -801,7 +1038,7 @@ var Finder = {
 		};
 	},
 
-	activeLayout: function(){
+	activeLayout: function(folderid){
 		var _this = this;
 		var btns = this.el.querySelectorAll(".layoutclick");
 		/*check the satus of layout*/
@@ -810,7 +1047,7 @@ var Finder = {
 			console.log("temp", new RegExp("active").test(temp));
 			if(new RegExp("active").test(temp)){
 				console.log("this:", this.el);
-				this.swipeLayout(this.el)
+				this.swipeLayout(this.el, folderid)
 			}
 		}
 		/*click to active*/
@@ -830,7 +1067,7 @@ var Finder = {
 					_this.listLayout(boss);
 				}
 				if(new RegExp("swipe").test(src)){
-					_this.swipeLayout(boss);
+					_this.swipeLayout(boss, folderid);
 				}
 				src = src.replace(".png", "-active.png")
 				this.querySelector("img").setAttribute("src", src)
@@ -852,8 +1089,8 @@ var Finder = {
 		t.textContent = "list"
 	},
 
-	swipeLayout: function(boss){
-		console.log("swipe");
+	swipeLayout: function(boss, folderid){
+		console.log("swipe!!!!!!!", folderid);
 		var t = boss.querySelector(".rightPart");
 		t.innerHTML = "";
 		// t.textContent  = "swipe"; 
@@ -862,11 +1099,13 @@ var Finder = {
 		up.classList.add("up");
 		// up.textContent = "up";
 
-		var imgContainer = document.createElement("div");
+		var imgContainer = document.createElement("ul");
 		imgContainer.classList.add("imgContainer");
-		for (var i = 0; i < bookDesign.length; i++) {
-			var imgList = document.createElement("div");
-			imgList.innerHTML = "<img src="+  bookDesign[i] +" />"
+		var folderid = eval(folderid);
+		for (var i = 0; i < folderid.length; i++) {
+			var imgList = document.createElement("li");
+			console.info(folderid[i]);
+			imgList.innerHTML = "<img class='activeImg' src="+  folderid[i].src +" />"
 			imgContainer.appendChild(imgList);
 		};
 
@@ -880,7 +1119,7 @@ var Finder = {
 
 		var downBar = document.createElement('div');
 		downBar.classList.add("downBar");
-		downBar.textContent = "downBar";
+		// downBar.textContent = "downBar";
 		down.appendChild(downBar);
 
 		var downList = document.createElement("div");
@@ -888,20 +1127,42 @@ var Finder = {
 		// downList.textContent = "downList";
 		down.appendChild(downList);
 
-		for (var i = 0; i < bookDesignInfo.length; i++) {
+		for (var i = 0; i < folderid.length; i++) {
 			var downSingle = document.createElement("div");
+			downSingle.setAttribute("data-id", i)
 			downSingle.classList.add("downSingle");
 			
+
+
+			if(folderid[i].link){
+				var a = document.createElement("div");
+				a.setAttribute("href", folderid[i].link)
+				a.classList.add("check");
+				a.textContent = "check";
+				a.addEventListener("click", function(){
+					console.log("this.getAttribute('href')", this.getAttribute("href"));
+					Safari.addFn(this.getAttribute("href"), this.getAttribute("href"));
+					Safari.close();
+					Safari.max();
+					// Safari.drag();
+					// Safari.resize();
+					// Safari.index()
+				})
+				downSingle.appendChild(a);
+			}
+
+
+
 			var name = document.createElement("div");
-			name.textContent = bookDesignInfo[i].name;
+			name.textContent = folderid[i].name;
 			downSingle.appendChild(name);
 
 			var date = document.createElement("div");
-			date.textContent = bookDesignInfo[i].date;
+			date.textContent = folderid[i].date;
 			downSingle.appendChild(date);
 
 			var kind = document.createElement("div");
-			kind.textContent = bookDesignInfo[i].kind;
+			kind.textContent = folderid[i].type;
 			downSingle.appendChild(kind);
 
 
@@ -911,11 +1172,7 @@ var Finder = {
 		};
 
 
-		var input = document.createElement("input");
-		input.setAttribute("type", "text");
-		
-		input.setAttribute("class", "fakeInput");
-		down.appendChild(input)
+
 
 
 		t.appendChild(down);
@@ -924,12 +1181,18 @@ var Finder = {
 
 		this.swipe();
 		this.clickDownList();
+		this.activePic();
 	},
 	clickDownList: function(){
 		var _this = this;
 		var l = this.el.querySelectorAll(".downSingle");
 		for (var i = 0; i < l.length; i++) {
-			l[i].addEventListener('click', function(){
+			
+			l[i].addEventListener('mousedown', function(){
+				console.log("asdadasdasa", this.getAttribute("data-id"));
+				console.log("flip",flip);
+				var num = parseInt(this.getAttribute("data-id"));
+				flip.flipster('jump',num)
 				/*clean*/
 				for (var i = 0; i < l.length; i++) {
 					l[i].classList.remove("activeDownList");
@@ -939,36 +1202,36 @@ var Finder = {
 					};
 				};
 				/*acttive blue bakground*/
-				var target = this.children[0].textContent;
-				console.log("target", target);
-				var pics = _this.el.querySelectorAll(".imgContainer div");
-				console.log("pics.", pics);
-				for (var i = 0; i < pics.length; i++) {
-					var temp = pics[i].innerHTML;
-					if(new RegExp(target).test(temp)){
-						var target = pics[i];
-						var offsetLeft = target.offsetLeft;
-						target.parentElement.parentElement.scrollLeft = offsetLeft-444;
-						for (var i = 0; i < pics.length; i++) {
-							pics[i].classList.remove("scale");
-						};
-						target.classList.add("scale");
+				// var target = this.children[0].textContent;
+				// console.log("target", target);
+				// var pics = _this.el.querySelectorAll(".imgContainer div");
+				// console.log("pics.", pics);
+				// for (var i = 0; i < pics.length; i++) {
+				// 	var temp = pics[i].innerHTML;
+				// 	if(new RegExp(target).test(temp)){
+				// 		var target = pics[i];
+				// 		var offsetLeft = target.offsetLeft;
+				// 		target.parentElement.parentElement.scrollLeft = offsetLeft-444;
+				// 		// for (var i = 0; i < pics.length; i++) {
+				// 		// 	pics[i].classList.remove("scale");
+				// 		// };
+				// 		// target.classList.add("scale");
 
-						setTimeout(function(){
-							var offsetLeft = target.offsetLeft;
+				// 		setTimeout(function(){
+				// 			var offsetLeft = target.offsetLeft;
 							
-							var move = setInterval(function(){
-								target.parentElement.parentElement.scrollLeft+=1
-								if( target.parentElement.parentElement.scrollLeft == offsetLeft-300){
-									clearInterval(move)
-								}
-							}, 1)
-							console.log("ad11~~~~~~~");
-						}, 222)
+				// 			var move = setInterval(function(){
+				// 				target.parentElement.parentElement.scrollLeft+=1
+				// 				if( target.parentElement.parentElement.scrollLeft == offsetLeft-300){
+				// 					clearInterval(move)
+				// 				}
+				// 			}, 1)
+				// 			console.log("ad11~~~~~~~");
+				// 		}, 222)
 
-						break;
-					}
-				};
+				// 		break;
+				// 	}
+				// };
 
 				this.classList.add("activeDownList");
 				var words2 = this.children;
@@ -984,51 +1247,159 @@ var Finder = {
 		// })
 	},
 	swipe:function(){
-		var silderC = this.el.querySelector(".up");
-		var div = this.el.querySelector(".up").querySelector(".imgContainer").children;
-		var currScrollLeft ;
-		for (var i = 0; i < div.length; i++) {
-			var temp; 
-			div[i].addEventListener("mousedown", function(){
 
-				temp =  this.offsetLeft;
-				currScrollLeft = silderC.scrollLeft;
-			})
-			div[i].addEventListener("mouseup", function(){
-				for (var i = 0; i < div.length; i++) {
-					div[i].classList.remove("scale");
-				};
-				
-				moveScroll(temp,silderC, currScrollLeft);
-				this.classList.add("scale");
-			})
+		 flip = $('.up').flipster({
+			itemContainer: 'ul',
+			itemSelector: 'li',
+			start: '0',
+			style: 'flat',
+			spacing: -0.25,
+			click: true,
+			keyboard: true
+		});
 
+	},
+	activePic: function(){
+		var pic =  document.querySelectorAll(".activeImg");
+		console.log("pcipcipcipic,", pic);
+		var _this = this;
+		for (var i = pic.length - 1; i >= 0; i--) {
+			pic[i].addEventListener("dblclick", function(){
+				var src = this.getAttribute("src");
+				// console.log("srcsrcccccc:", src);
+				// var div = document.createElement("div");
+				// div.innerHTML = "<img style='width:80%' src="+ src+" />"
+				// div.style.position  = "absolute";
+				// div.style.left  = "10%";
+				// div.style.top  = "10%";
+				// div.style.zIndex  = "10000000";
+				// div.style.width  = window.innerWidth+ "px";
+				// div.style.minHeight  = 300+ "px";
+				// document.querySelector(".desktop").appendChild(div);
+				_this.picWindow(src);
+				Safari.close();
+				Safari.max();
+			})
 		};
-		silderC.addEventListener("scroll", function(){
-			console.log("sliderC.scrollLeft", silderC.scrollLeft);
-		})
-		function moveScroll(temp, silderC, currScrollLeft){
-			// silderC.scrollLeft = Math.max(temp-300, 0);
-			var t = Math.max(temp-300, 0)-currScrollLeft;
-			console.log("cccccc: ", t);
-			
-			// for (var i = 0; i <t; i++) {
-			// 	// console.log("adsadas");
-			// 	var setInterval
-			// 	setTimeout(function(){
-			// 		silderC.scrollLeft += 1;
-			// 		console.log("silderC.scrollLeft; ", silderC.scrollLeft);
-			// 	}, 999)
-			// };
-			var a = setInterval(function(){
-				silderC.scrollLeft += 11;
-				if(silderC.scrollLeft > t){
-					clearInterval(a)
-				}
-			},1)
-			
-			
+	},
+	picWindow: function(src){
+		var el = document.createElement("div");
+		el.classList.add("picWindow");
+		/*style*/
+		el.style.width = window.innerWidth/1.3 + "px";
+		el.style.height = window.innerHeight/1.2 + "px";
+		// el.style.background = "red";
+		el.classList.add(this.className[0]);
+		el.classList.add(this.className[1]);
+
+		var windows = document.querySelectorAll(".window"); 
+		for (var j = 0; j < windows.length; j++) {
+			windows[j].style.zIndex = "10";
+		};
+
+		/*open on the top*/
+		el.style.zIndex = 100;
+		el.innerHTML = "";
+
+		var title = document.createElement("div");
+		title.classList.add("title");
+
+
+		/*-- temporay drag --*/
+		var drag = false;
+		
+		title.addEventListener("mousedown", mousedown);
+		
+		function mousedown (e) {
+			var _width = title.parentElement.getClientRects()[0].width;
+			var _height = title.parentElement.getClientRects()[0].height;
+			var _left = title.parentElement.getClientRects()[0].left;
+			var _top = title.parentElement.getClientRects()[0].top;
+			var _distanceX = e.clientX-_left;
+			var _distanceY = e.clientY-_top;
+			console.log("adandasdnNNUM", title.parentElement);
+			console.log("adandasdnNNUM", title.parentElement);
+			this.style.cursor = "default";
+			// this.parentElement.style.zIndex += 20;
+			window.onmousemove = function(e){
+				var _x = Math.max(e.clientX-_distanceX);
+				var _y = Math.max(25,e.clientY-_distanceY);
+				var _window  = title.parentElement;
+				_window.style.top = _y+ "px";
+				_window.style.left = _x + "px";
+			}
 		}
+		title.addEventListener("mouseup", function(e){
+			window.onmousemove = "";
+		})
+
+
+
+
+
+		var leftBtns = document.createElement('div');
+		leftBtns.classList.add("leftBtns");
+
+		/*leftbtn*/
+		for (var i = 0; i < leftBtnsImg.length; i++) {
+			var btn = document.createElement("img");
+			btn.setAttribute("src", leftBtnsImg[i]);
+			btn.setAttribute("class", "btn"+i.toString());
+			leftBtns.appendChild(btn);
+		};
+
+		leftBtns.addEventListener("mouseenter", function(){
+			var c = this.children;
+			for (var i = 0; i < c.length; i++) {
+				c[i].setAttribute("src", leftBtnsImgHover[i])
+			};
+		}, true)
+
+		leftBtns.addEventListener("mouseout", function(){
+			var c = this.children;
+			for (var i = 0; i < c.length; i++) {
+				c[i].setAttribute("src", leftBtnsImg[i])
+			};
+		}, true)
+
+
+
+		title.appendChild(leftBtns);/*<------add btn */
+
+		/*resize bar*/
+		for (var i = 0; i < 8; i++) {
+			var resizeBar = document.createElement("div");
+			resizeBar.classList.add("resizeBar"+ i.toString());						
+			el.appendChild(resizeBar);
+		};
+
+		/*safariAddress*/
+		var safariAddress = document.createElement("div");
+		safariAddress.textContent = name;
+		safariAddress.classList.add("safariAddress");
+		title.appendChild(safariAddress);
+
+		el.appendChild(title);
+
+		/*tabs*/
+		var safariTabs = document.createElement("div");
+		safariTabs.classList.add("safariTabs");
+		safariTabs.textContent = '';
+		// el.appendChild(safariTabs);
+
+		/*------- PIC conainer--------*/
+		var PIC = document.createElement("div");
+		PIC.classList.add("PIC");
+		PIC.style.width ="100%";
+		var img = document.createElement("img");
+		img.setAttribute("src", src)
+		img.style.width = "100%";
+		PIC.appendChild(img);
+
+		el.appendChild(PIC);		
+
+		Desktop.el.appendChild(el);
+
 	}
 
 
@@ -1046,6 +1417,7 @@ var ToolBar = {
 		this.el.appendChild(toolBarMenu.el()) /*<-----------*/
 		toolBarMenu.activeSideMenu()
 		toolBarMenu.addSubmenu()
+		
 	}
 }
 
@@ -1066,11 +1438,13 @@ var Dock = {
 		var dockWidth = document.querySelector(".dock").getClientRects()[0].width;
 		var l = 8;
 		var m = 5;
-		var h = -4;
+		var h = -3;
 		var mh = -1.5;
 		/*hover icone*/
 		for (var i = 0; i < icons.length; i++) {
 			icons[i].addEventListener("mouseenter", function(e){
+
+
 				console.log(this.nextSibling);
 				console.log(this.previousSibling);
 				if(this.nextSibling){
@@ -1106,7 +1480,7 @@ var Dock = {
 			icons[i].addEventListener('click', function(){
 				console.log("this.dataset.id", this.dataset.id);
 				var dd = this.dataset.id;
-
+				var _this = this;
 				var url = function(){
 					switch(dd) {
 					    case "icarrental":
@@ -1131,17 +1505,37 @@ var Dock = {
 					        return ["http://sheng.design/intro-devgo/", "DevGo"];
 					        break;
 					    case "githubIcon":
-					        window.location = "https://github.com/minmingsheng"; 
-					        return null;
+					        	window.open("https://github.com/minmingsheng", '_blank'); 
+					        	console.log("asdasdasddasdasdasdsadasdasd");
+					        return [null, null];
 					        break;
 					    case "LinkedIcon":
-					       window.location = "https://ca.linkedin.com/in/minming-sheng-9b1746b2"; 
+					       		window.open("https://ca.linkedin.com/in/minming-sheng-9b1746b2", "_blank"); 
+					    	return [null, null];
+					        break;
+					    case "finderIcon":
+					    	
+					    	console.log("document.querySelectorAll(folder)", document.querySelectorAll(".folder"));
+					    	var ss = _this.getClientRects()[0].width;
+					    	_this.style.width = width + "px";
+					    	_this.style.transform = "translate(0,0)";
+					    	_this.style.transiition = "all 0.1s ease";
+					    	var folders =  document.querySelectorAll(".folder")
+					    	for (var i = folders.length - 1; i >= 0; i--) {
+					    		folders[i].classList.toggle("none");
+					    	};
+					    	_this.style.animation = " !important";
+
+					    	return [null, null];
 					        break;
 					    default:
 					    return "http://sheng.design/intro-carrental/"
 					}
 				};
 				url();
+				if(dd== 'finderIcon' || dd=="githubIcon" ||dd == "LinkedIcon"){
+					return
+				}
 				this.style.animation = "openApp 1.1s 4  ease";
 				if(this.nextSibling){
 					this.nextSibling.style.width = width+"px";
@@ -1175,10 +1569,13 @@ var Safari = {
 		if(url == null){
 			return;
 		}
+		if(name == null){
+			return;
+		}
 		/*window*/
 		var el = document.createElement("div");
 		/*style*/
-		el.style.width = window.innerWidth/2 + "px";
+		el.style.width = window.innerWidth/1.3 + "px";
 		el.style.height = window.innerHeight/1.2 + "px";
 		// el.style.background = "red";
 		el.classList.add(this.className[0]);
@@ -1260,7 +1657,11 @@ var Safari = {
 	},
 	drag: function(el){
 		var drag = false;
-		el.querySelector(".title").addEventListener("mousedown", mousedown)
+		var titles = el.querySelectorAll(".title")
+		for (var i = titles.length - 1; i >= 0; i--) {
+			titles[i].addEventListener("mousedown", mousedown);
+		};
+		
 		function mousedown (e) {
 			var _this = this; 
 			var _width = _this.getClientRects()[0].width;
@@ -1378,7 +1779,7 @@ var DockIcon = {
 // child of ToolBar
 var toolBarMenu = {
 	leftTemplate: "<div><img src=" + img.apple + "  /></div><div>jasonOS</div><div>File</div><div style='opacity:0.4'>View</div><div>Go</div><div style='opacity:0.4'>Window</div><div>About Me</div>",
-	rightTemplate: "<div class='day'>Tue</div><div class='month'>Apr</div><div class='realtime'>00:00:00</div><div><img src="+ img.ampifier +"  /></div><div><img class='sidemenu' src="+ img.sidemenu +"  /></div>",
+	rightTemplate: "<div class='day'>Tue</div><div class='month'>Apr</div><div class='realtime'>00:00:00</div><div><img src="+ img.ampifier +" style='opacity:0.4' /></div><div><img class='sidemenu' src="+ img.sidemenu +"  /></div>",
 	el : function(){
 		var el = document.createElement("div");
 		el.setAttribute("class", "menu")
@@ -1453,12 +1854,15 @@ var toolBarMenu = {
 			// menu[i].classList.add("submenu");
 			console.log(menu[i].textContent);
 			menu[i].addEventListener("click", function(){
+				console.log("document.querySelectorAll('submenu')",document.querySelectorAll('.submenu'));
+				var submenus = document.querySelectorAll('.submenu');
 				/*-------go------------*/
 				if(this.textContent == "Go"){
 					/*toggle bakground*/
 					this.classList.toggle("blue");
 
 					var sub = document.createElement("div");
+					sub.classList.add("Go");
 					/*====sub style===*/
 					var btnLeft = this.getClientRects()[0].left;
 					sub.style.left = btnLeft+ "px";
@@ -1469,6 +1873,7 @@ var toolBarMenu = {
 						 />"
 						var p = document.createElement("a");
 						p.textContent = goList[i].name;
+						p.classList.add("go");
 						p.setAttribute("href", goList[i].link);
 						p.setAttribute("target", "_blank");
 						subli.appendChild(p);
@@ -1490,19 +1895,22 @@ var toolBarMenu = {
 					this.classList.toggle("blue");
 
 					var sub = document.createElement("div");
+					sub.classList.add("About");
+
 					/*====sub style===*/
 					var btnLeft = this.getClientRects()[0].left;
 					sub.style.left = btnLeft+ "px";
 					/*====add child el( populate go list)=====*/
 					for (var i = 0; i < aboutList.length; i++) {
-						var subli = document.createElement("div");
-						subli.innerHTML = "<img src='images/whiteProtrait.png' \
-						 />"
-						var p = document.createElement("a");
+						var subli = document.createElement("a");
+
+						subli.innerHTML = "";
+						var p = document.createElement("div");
 						p.textContent = aboutList[i].name;
-						p.setAttribute("data-des", aboutList[i].des);
+						p.classList.add("aboutme");
+						subli.setAttribute("data-des", aboutList[i].des);
 						
-						p.addEventListener("click", function(){
+						subli.addEventListener("click", function(){
 							var infoTemplate = "<div class='title'></div><div class='body'><div><img src="+ img.toolbarInfo +"  /></div><div>\
 							<h1>"+this.textContent+"</h1>\
 							<p>"+this.getAttribute("data-des")+"</p>\
@@ -1512,8 +1920,10 @@ var toolBarMenu = {
 							infoWindow.drag();
 						})
 
+						
 						subli.appendChild(p);
 						sub.appendChild(subli);
+
 					};
 					sub.classList.add("submenu");
 					if(about){
@@ -1530,6 +1940,8 @@ var toolBarMenu = {
 					this.classList.toggle("blue");
 
 					var sub = document.createElement("div");
+					sub.classList.add("Jason");
+
 					/*====sub style===*/
 					var btnLeft = this.getClientRects()[0].left;
 					sub.style.left = btnLeft+ "px";
@@ -1573,6 +1985,8 @@ var toolBarMenu = {
 					this.classList.toggle("blue");
 
 					var sub = document.createElement("div");
+					sub.classList.add("File");
+
 					/*====sub style===*/
 					var btnLeft = this.getClientRects()[0].left;
 					sub.style.left = btnLeft+ "px";
@@ -1585,6 +1999,7 @@ var toolBarMenu = {
 						p.textContent = fileList[i].name;
 						p.setAttribute("href", fileList[i].link);
 						p.setAttribute("target", "_blank");
+						p.setAttribute("class", "file");
 						subli.appendChild(p);
 						sub.appendChild(subli);
 					};
@@ -1599,47 +2014,79 @@ var toolBarMenu = {
 					
 				}	
 
-				/*---------about me--------*/
-				if(this.textContent == "About Me"){
-					/*toggle bakground*/
-					this.classList.toggle("blue");
-
-					var sub = document.createElement("div");
-					/*====sub style===*/
-					var btnLeft = this.getClientRects()[0].left;
-					sub.style.left = btnLeft+ "px";
-					/*====add child el( populate go list)=====*/
-					for (var i = 0; i < aboutList.length; i++) {
-						var subli = document.createElement("div");
-						subli.innerHTML = "<img src='images/whiteProtrait.png' \
-						 />"
-						var p = document.createElement("a");
-						p.textContent = aboutList[i].name;
-						p.setAttribute("data-des", aboutList[i].des);
-						
-						p.addEventListener("click", function(){
-							var infoTemplate = "<div class='title'></div><div class='body'><div><img src="+ img.toolbarInfo +"  /></div><div>\
-							<h1>"+this.textContent+"</h1>\
-							<p>"+this.getAttribute("data-des")+"</p>\
-							<button>ok</button></div></div>";
-							infoWindow.addFn(infoTemplate);
-							infoWindow.buttonFn();
-							infoWindow.drag();
-						})
-
-						subli.appendChild(p);
-						sub.appendChild(subli);
+				/*layout line*/
+				var aboutmes = document.querySelectorAll(".aboutme");
+				for (var i = aboutmes.length - 1; i >= 0; i--) {
+					if (aboutmes[i].textContent == "Contact") {
+						console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
+						aboutmes[i].parentElement.style.marginTop = "0.3em";
+						aboutmes[i].parentElement.style.paddingBottom = "0.8em";
+						aboutmes[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
 					};
-					sub.classList.add("submenu");
-					if(go){
-						document.querySelector(".desktop").appendChild(sub);
-						go = false;
-					}else{
-						document.querySelector(".submenu").remove();
-						go = true;
+
+					if (aboutmes[i].textContent == "Good education") {
+						console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
+						aboutmes[i].parentElement.style.marginTop = "0.8em";
+						// aboutmes[i].parentElement.style.paddingBottom = "0.3em";
+						// aboutmes[i].parentElement.style.borderBottom = "3px solid #fff";
+					};
+
+					if (aboutmes[i].textContent == "Based in Toronto") {
+						console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
+						aboutmes[i].parentElement.style.marginTop = "0.3em";
+						aboutmes[i].parentElement.style.paddingBottom = "0.8em";
+						aboutmes[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
+					};
+					if (aboutmes[i].textContent == "UX/UI designer") {
+						console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
+						aboutmes[i].parentElement.style.marginTop = "0.8em";
+					};
+				};
+				var gos = document.querySelectorAll(".go");
+				// console.log("gos", gos);
+				for (var i = gos.length - 1; i >= 0; i--) {
+					if(gos[i].textContent == "Project Catalogue"){
+						gos[i].parentElement.style.marginTop = "0.3em";
+						gos[i].parentElement.style.paddingBottom = "0.8em";
+						gos[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
 					}
-					
-				}	
+					if(gos[i].textContent == "Resume"){
+						gos[i].parentElement.style.marginTop = "0.8em";
+						gos[i].parentElement.style.paddingBottom = "0.8em";
+						gos[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
+					}
+					if(gos[i].textContent == "Linkedin"){
+						gos[i].parentElement.style.marginTop = "0.8em";
+					}
+				};
+
+				var files = document.querySelectorAll(".file");
+				for (var i = files.length - 1; i >= 0; i--) {
+					if (files[i].textContent == "Watch App design.pdf") {
+						console.log("files[i]ssssss", files[i].parentElement);	
+						files[i].parentElement.style.marginTop = "0.3em";
+						files[i].parentElement.style.paddingBottom = "0.8em";
+						files[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
+					};
+
+					if (files[i].textContent == "Case study.pdf") {
+						console.log("files[i]ssssss", files[i].parentElement);	
+						files[i].parentElement.style.marginTop = "0.8em";
+						// files[i].parentElement.style.paddingBottom = "0.3em";
+						// files[i].parentElement.style.borderBottom = "3px solid #fff";
+					};
+
+					if (files[i].textContent == "Interface critique.pdf") {
+						console.log("files[i]ssssss", files[i].parentElement);	
+						files[i].parentElement.style.marginTop = "0.3em";
+						files[i].parentElement.style.paddingBottom = "0.8em";
+						files[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
+					};
+					if (files[i].textContent == "Kiosk Design.pdf") {
+						console.log("files[i]ssssss", files[i].parentElement);	
+						files[i].parentElement.style.marginTop = "0.8em";
+					};
+				};
 			})
 			
 		};
