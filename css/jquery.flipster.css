@@ -166,7 +166,7 @@
 }
 .flipster--carousel .flipster__item--past,
 .flipster--carousel .flipster__item--future {
-  opacity: 0;
+/*  opacity: 0;*/
   /*transition-delay: 115ms;*/
 }
 .flipster--carousel .flipster__item--past-2,
@@ -300,11 +300,11 @@
   display: block;
 }
 .flipster--wheel .flipster__item--past .flipster__item__content {
-  opacity: 0;
+/*  opacity: 0;*/
   transform: rotateZ(-80deg) translate(-170%, 110%);
 }
 .flipster--wheel .flipster__item--future .flipster__item__content {
-  opacity: 0;
+/*  opacity: 0;*/
   transform: rotateZ(80deg) translate(170%, 110%);
 }
 .flipster--wheel .flipster__item--past-3 .flipster__item__content {

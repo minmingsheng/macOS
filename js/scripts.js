@@ -422,9 +422,9 @@ var LoadingPage = {
 // <div class="logIn"></div>
 
 var ThreeBtn = {
-	template1: "<div><img src='"+btnImg.sleep+"'/></div>",
-	template2: "<div><img src='"+btnImg.shut+"'/></div>",
-	template3: "<div><img src='"+btnImg.restart+"'/></div>"
+	template1: "<div class='sleep'><img src='"+btnImg.sleep+"'/></div>",
+	template2: "<div class='shut'><img src='"+btnImg.shut+"'/></div>",
+	template3: "<div class='restart'><img src='"+btnImg.restart+"'/></div>"
 }
 
 var LogIn = {
@@ -447,13 +447,41 @@ var LogIn = {
 			console.info(this);
 			Input.addFn();
 		}
+
+		var sleep = document.querySelector(".sleep");
+		sleep.style.cursor = "pointer";
+		sleep.addEventListener("click", function(){
+			console.log(this,"!!!!!!!");
+			var div = document.createElement("div");
+			div.classList.add("sleepbg");
+			div.addEventListener("click", function(){
+				this.remove();
+			})
+			document.body.appendChild(div);
+		})
+
+		var shut = document.querySelector(".shut");
+		shut.style.cursor = "pointer";
+		shut.addEventListener("click", function(){
+			open(location, '_self').close();
+			console.log(this,"!!!!!!!");
+		})
+
+		var restart = document.querySelector(".restart");
+		restart.style.cursor = "pointer";
+		restart.addEventListener("click", function(){
+			location.reload();
+			console.log(this,"!!!!!!!");
+		})
+
+
 	}
 }
 
 /*child of LogIN*/
 var Input = {
 	el: document.createElement("div"),
-	template: "<i></i><div><input type='password' placeholder='Enter Passwoord'></div>",
+	template: "<i></i><div><input type='password' placeholder='Enter whatever you want'></div>",
 	className:['logIn-input'],
 	addFn: function(){
 		this.el.classList.add(this.className[0]);
@@ -1061,10 +1089,10 @@ var Finder = {
 				console.log("this.getAttribute",  new RegExp("swipe").test(src));
 				var boss = target.parentElement.parentElement.parentElement;
 				if(new RegExp("block").test(src)){
-					_this.blockLayout(boss);
+					// _this.blockLayout(boss);<<<<<<<<<<<<<
 				}
 				if(new RegExp("list").test(src)){
-					_this.listLayout(boss);
+					// _this.listLayout(boss);<<<<<<<<<<<<<
 				}
 				if(new RegExp("swipe").test(src)){
 					_this.swipeLayout(boss, folderid);
@@ -1847,246 +1875,310 @@ var toolBarMenu = {
 	},
 	addSubmenu: function(){
 		var menu = document.querySelector(".menu");
-		var go = true;
-		var about = true;
+		// var go = true;
+		// var about = true;
 		menu = menu.children[0].children;
 		for (var i = 0; i < menu.length; i++) {
 			// menu[i].classList.add("submenu");
 			console.log(menu[i].textContent);
+			var ja = "close";
+			var fi = "close";
+			var go = "close";
+			var ab = "close";
 			menu[i].addEventListener("click", function(){
 				console.log("document.querySelectorAll('submenu')",document.querySelectorAll('.submenu'));
 				var submenus = document.querySelectorAll('.submenu');
+				/*remove all*/
+				for (var i = submenus.length - 1; i >= 0; i--) {
+					submenus[i].remove();
+				};
 				/*-------go------------*/
 				if(this.textContent == "Go"){
-					/*toggle bakground*/
-					this.classList.toggle("blue");
-
-					var sub = document.createElement("div");
-					sub.classList.add("Go");
-					/*====sub style===*/
-					var btnLeft = this.getClientRects()[0].left;
-					sub.style.left = btnLeft+ "px";
-					/*====add child el( populate go list)=====*/
-					for (var i = 0; i < goList.length; i++) {
-						var subli = document.createElement("div");
-						subli.innerHTML = "<img src='images/link-09.png' \
-						 />"
-						var p = document.createElement("a");
-						p.textContent = goList[i].name;
-						p.classList.add("go");
-						p.setAttribute("href", goList[i].link);
-						p.setAttribute("target", "_blank");
-						subli.appendChild(p);
-						sub.appendChild(subli);
-					};
-					sub.classList.add("submenu");
-					if(go){
+					if(go == "close"){
+						go  = "open";
+						var sub = document.createElement("div");
+						sub.classList.add("Go");
+						/*====sub style===*/
+						var btnLeft = this.getClientRects()[0].left;
+						sub.style.left = btnLeft+ "px";
+						/*====add child el( populate go list)=====*/
+						for (var i = 0; i < goList.length; i++) {
+							var subli = document.createElement("div");
+							subli.innerHTML = "<img src='images/link-09.png' \
+							 />"
+							var p = document.createElement("a");
+							p.textContent = goList[i].name;
+							p.classList.add("go");
+							p.setAttribute("href", goList[i].link);
+							p.setAttribute("target", "_blank");
+							subli.appendChild(p);
+							sub.appendChild(subli);
+						};
+						sub.classList.add("submenu");
 						document.querySelector(".desktop").appendChild(sub);
-						go = false;
-					}else{
-						document.querySelector(".submenu").remove();
-						go = true;
+						var gos = document.querySelectorAll(".go");
+						// console.log("gos", gos);
+						for (var i = gos.length - 1; i >= 0; i--) {
+							if(gos[i].textContent == "Project Catalogue"){
+								gos[i].parentElement.style.marginTop = "0.3em";
+								gos[i].parentElement.style.paddingBottom = "0.8em";
+								gos[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
+							}
+							if(gos[i].textContent == "Resume"){
+								gos[i].parentElement.style.marginTop = "0.8em";
+								gos[i].parentElement.style.paddingBottom = "0.8em";
+								gos[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
+							}
+							if(gos[i].textContent == "Linkedin"){
+								gos[i].parentElement.style.marginTop = "0.8em";
+							}
+						};
+						return;
 					}
+					if(go == "open"){
+						for (var i = submenus.length - 1; i >= 0; i--) {
+							submenus[i].remove();
+						};
+						go = "close";
+						return;
+					}
+					/*toggle bakground*/
+					// this.classList.toggle("blue");
+
+					
+					// if(go){
+					// 	// go = false;
+					// }else{
+					// 	document.querySelector(".submenu").remove();
+					// 	// go = true;
+					// }
 					
 				}	
 				/*---------about me--------*/
 				if(this.textContent == "About Me"){
+
 					/*toggle bakground*/
-					this.classList.toggle("blue");
+					// this.classList.toggle("blue");
+					if(ab  == "close"){
+						ab = "open";
+						var sub = document.createElement("div");
+						sub.classList.add("About");
 
-					var sub = document.createElement("div");
-					sub.classList.add("About");
+						/*====sub style===*/
+						var btnLeft = this.getClientRects()[0].left;
+						sub.style.left = btnLeft+ "px";
+						/*====add child el( populate go list)=====*/
+						for (var i = 0; i < aboutList.length; i++) {
+							var subli = document.createElement("a");
 
-					/*====sub style===*/
-					var btnLeft = this.getClientRects()[0].left;
-					sub.style.left = btnLeft+ "px";
-					/*====add child el( populate go list)=====*/
-					for (var i = 0; i < aboutList.length; i++) {
-						var subli = document.createElement("a");
+							subli.innerHTML = "";
+							var p = document.createElement("div");
+							p.textContent = aboutList[i].name;
+							p.classList.add("aboutme");
+							subli.setAttribute("data-des", aboutList[i].des);
+							
+							subli.addEventListener("click", function(){
+								var infoTemplate = "<div class='title'></div><div class='body'><div><img src="+ img.toolbarInfo +"  /></div><div>\
+								<h1>"+this.textContent+"</h1>\
+								<p>"+this.getAttribute("data-des")+"</p>\
+								<button>ok</button></div></div>";
+								infoWindow.addFn(infoTemplate);
+								infoWindow.buttonFn();
+								infoWindow.drag();
+							})
 
-						subli.innerHTML = "";
-						var p = document.createElement("div");
-						p.textContent = aboutList[i].name;
-						p.classList.add("aboutme");
-						subli.setAttribute("data-des", aboutList[i].des);
-						
-						subli.addEventListener("click", function(){
-							var infoTemplate = "<div class='title'></div><div class='body'><div><img src="+ img.toolbarInfo +"  /></div><div>\
-							<h1>"+this.textContent+"</h1>\
-							<p>"+this.getAttribute("data-des")+"</p>\
-							<button>ok</button></div></div>";
-							infoWindow.addFn(infoTemplate);
-							infoWindow.buttonFn();
-							infoWindow.drag();
-						})
+							
+							subli.appendChild(p);
+							sub.appendChild(subli);
 
-						
-						subli.appendChild(p);
-						sub.appendChild(subli);
-
-					};
-					sub.classList.add("submenu");
-					if(about){
+						};
+						sub.classList.add("submenu");
 						document.querySelector(".desktop").appendChild(sub);
-						about = false;
-					}else{
-						document.querySelector(".submenu").remove();
-						about = true;
+						console.log("open:", ab);
+						var aboutmes = document.querySelectorAll(".aboutme");
+						for (var i = aboutmes.length - 1; i >= 0; i--) {
+							if (aboutmes[i].textContent == "Contact") {
+								console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
+								aboutmes[i].parentElement.style.marginTop = "0.3em!important";
+								aboutmes[i].parentElement.style.paddingBottom = "0.8em!important";
+								aboutmes[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)!important";
+							};
+
+							if (aboutmes[i].textContent == "Good education") {
+								console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
+								aboutmes[i].parentElement.style.marginTop = "0.8em";
+								// aboutmes[i].parentElement.style.paddingBottom = "0.3em";
+								// aboutmes[i].parentElement.style.borderBottom = "3px solid #fff";
+							};
+
+							if (aboutmes[i].textContent == "Based in Toronto") {
+								console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
+								aboutmes[i].parentElement.style.marginTop = "0.3em";
+								aboutmes[i].parentElement.style.paddingBottom = "0.8em";
+								aboutmes[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
+							};
+							if (aboutmes[i].textContent == "UX/UI designer") {
+								console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
+								aboutmes[i].parentElement.style.marginTop = "0.8em";
+							};
+						};
+						return;
 					}
+
+					if(ab == "open"){
+						for (var i = submenus.length - 1; i >= 0; i--) {
+							submenus[i].remove();
+						};
+						ab = "close";
+						console.log("close:", ab);
+
+						return;
+					}
+					
+					// if(about){
+					// 	document.querySelector(".desktop").appendChild(sub);
+					// 	// about = false;
+					// }else{
+					// 	document.querySelector(".submenu").remove();
+					// 	// about = true;
+					// }
 					
 				}	
 				if(this.textContent == "jasonOS"){
 					/*toggle bakground*/
-					this.classList.toggle("blue");
+					// this.classList.toggle("blue");
+					if(ja == "close"){
+						ja = "open";
+						var sub = document.createElement("div");
+						sub.classList.add("Jason");
 
-					var sub = document.createElement("div");
-					sub.classList.add("Jason");
+						/*====sub style===*/
+						var btnLeft = this.getClientRects()[0].left;
+						sub.style.left = btnLeft+ "px";
+						/*====add child el( populate go list)=====*/
+						for (var i = 0; i < jasonOS.length; i++) {
+							var subli = document.createElement("div");
+							subli.innerHTML = "<img src='images/questionMark-23.png' \
+							 />"
 
-					/*====sub style===*/
-					var btnLeft = this.getClientRects()[0].left;
-					sub.style.left = btnLeft+ "px";
-					/*====add child el( populate go list)=====*/
-					for (var i = 0; i < jasonOS.length; i++) {
-						var subli = document.createElement("div");
-						subli.innerHTML = "<img src='images/questionMark-23.png' \
-						 />"
+							var p = document.createElement("a");
+							p.textContent = jasonOS[i].name;
+							p.setAttribute("data-des", jasonOS[i].des);
+							
+							p.addEventListener("click", function(){
+								var infoTemplate = "<div class='title'></div><div class='body'><div><img src="+ img.portrait +"  /></div><div>\
+								<h1>"+this.textContent+"</h1>\
+								<p>"+this.getAttribute("data-des")+"</p>\
+								<button>ok</button></div></div>";
+								infoWindow.addFn(infoTemplate);
+								infoWindow.buttonFn();
+								infoWindow.drag();
+							})
 
-						var p = document.createElement("a");
-						p.textContent = jasonOS[i].name;
-						p.setAttribute("data-des", jasonOS[i].des);
-						
-						p.addEventListener("click", function(){
-							var infoTemplate = "<div class='title'></div><div class='body'><div><img src="+ img.portrait +"  /></div><div>\
-							<h1>"+this.textContent+"</h1>\
-							<p>"+this.getAttribute("data-des")+"</p>\
-							<button>ok</button></div></div>";
-							infoWindow.addFn(infoTemplate);
-							infoWindow.buttonFn();
-							infoWindow.drag();
-						})
-
-						subli.appendChild(p);
-						sub.appendChild(subli);
-					};
-					sub.classList.add("submenu");
-					if(go){
+							subli.appendChild(p);
+							sub.appendChild(subli);
+						};
+						sub.classList.add("submenu");
 						document.querySelector(".desktop").appendChild(sub);
-						go = false;
-					}else{
-						document.querySelector(".submenu").remove();
-						go = true;
+
+						return;
 					}
+
+					if(ja == "open"){
+						for (var i = submenus.length - 1; i >= 0; i--) {
+							submenus[i].remove();
+						};
+						ja = "close";
+						return;
+					}
+					
+					// if(go){
+					// 	document.querySelector(".desktop").appendChild(sub);
+					// 	go = false;
+					// }else{
+					// 	document.querySelector(".submenu").remove();
+					// 	go = true;
+					// }
 					
 				}	
 
 				/*---------File------------*/
 				if(this.textContent == "File"){
 					/*toggle bakground*/
-					this.classList.toggle("blue");
+					// this.classList.toggle("blue");
+					if(fi == "close"){
+						fi = "open";
+						var sub = document.createElement("div");
+						sub.classList.add("File");
 
-					var sub = document.createElement("div");
-					sub.classList.add("File");
-
-					/*====sub style===*/
-					var btnLeft = this.getClientRects()[0].left;
-					sub.style.left = btnLeft+ "px";
-					/*====add child el( populate go list)=====*/
-					for (var i = 0; i < fileList.length; i++) {
-						var subli = document.createElement("div");
-						subli.innerHTML = "<img src='images/link-09.png' \
-						 />"
-						var p = document.createElement("a");
-						p.textContent = fileList[i].name;
-						p.setAttribute("href", fileList[i].link);
-						p.setAttribute("target", "_blank");
-						p.setAttribute("class", "file");
-						subli.appendChild(p);
-						sub.appendChild(subli);
-					};
-					sub.classList.add("submenu");
-					if(go){
+						/*====sub style===*/
+						var btnLeft = this.getClientRects()[0].left;
+						sub.style.left = btnLeft+ "px";
+						/*====add child el( populate go list)=====*/
+						for (var i = 0; i < fileList.length; i++) {
+							var subli = document.createElement("div");
+							subli.innerHTML = "<img src='images/link-09.png' \
+							 />"
+							var p = document.createElement("a");
+							p.textContent = fileList[i].name;
+							p.setAttribute("href", fileList[i].link);
+							p.setAttribute("target", "_blank");
+							p.setAttribute("class", "file");
+							subli.appendChild(p);
+							sub.appendChild(subli);
+						};
+						sub.classList.add("submenu");
 						document.querySelector(".desktop").appendChild(sub);
-						go = false;
-					}else{
-						document.querySelector(".submenu").remove();
-						go = true;
+						var files = document.querySelectorAll(".file");
+						for (var i = files.length - 1; i >= 0; i--) {
+							if (files[i].textContent == "Watch App design.pdf") {
+								console.log("files[i]ssssss", files[i].parentElement);	
+								files[i].parentElement.style.marginTop = "0.3em";
+								files[i].parentElement.style.paddingBottom = "0.8em";
+								files[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
+							};
+
+							if (files[i].textContent == "Case study.pdf") {
+								console.log("files[i]ssssss", files[i].parentElement);	
+								files[i].parentElement.style.marginTop = "0.8em";
+								// files[i].parentElement.style.paddingBottom = "0.3em";
+								// files[i].parentElement.style.borderBottom = "3px solid #fff";
+							};
+
+							if (files[i].textContent == "Interface critique.pdf") {
+								console.log("files[i]ssssss", files[i].parentElement);	
+								files[i].parentElement.style.marginTop = "0.3em";
+								files[i].parentElement.style.paddingBottom = "0.8em";
+								files[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
+							};
+							if (files[i].textContent == "Kiosk Design.pdf") {
+								console.log("files[i]ssssss", files[i].parentElement);	
+								files[i].parentElement.style.marginTop = "0.8em";
+							};
+						};
+						return;
 					}
+
+					if(fi == "open"){
+						for (var i = submenus.length - 1; i >= 0; i--) {
+							submenus[i].remove();
+						};
+						fi = "close";
+						return;
+					}
+					
+					// if(go){
+					// 	document.querySelector(".desktop").appendChild(sub);
+					// 	go = false;
+					// }else{
+					// 	document.querySelector(".submenu").remove();
+					// 	go = true;
+					// }
 					
 				}	
 
 				/*layout line*/
-				var aboutmes = document.querySelectorAll(".aboutme");
-				for (var i = aboutmes.length - 1; i >= 0; i--) {
-					if (aboutmes[i].textContent == "Contact") {
-						console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
-						aboutmes[i].parentElement.style.marginTop = "0.3em";
-						aboutmes[i].parentElement.style.paddingBottom = "0.8em";
-						aboutmes[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
-					};
 
-					if (aboutmes[i].textContent == "Good education") {
-						console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
-						aboutmes[i].parentElement.style.marginTop = "0.8em";
-						// aboutmes[i].parentElement.style.paddingBottom = "0.3em";
-						// aboutmes[i].parentElement.style.borderBottom = "3px solid #fff";
-					};
-
-					if (aboutmes[i].textContent == "Based in Toronto") {
-						console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
-						aboutmes[i].parentElement.style.marginTop = "0.3em";
-						aboutmes[i].parentElement.style.paddingBottom = "0.8em";
-						aboutmes[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
-					};
-					if (aboutmes[i].textContent == "UX/UI designer") {
-						console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
-						aboutmes[i].parentElement.style.marginTop = "0.8em";
-					};
-				};
-				var gos = document.querySelectorAll(".go");
-				// console.log("gos", gos);
-				for (var i = gos.length - 1; i >= 0; i--) {
-					if(gos[i].textContent == "Project Catalogue"){
-						gos[i].parentElement.style.marginTop = "0.3em";
-						gos[i].parentElement.style.paddingBottom = "0.8em";
-						gos[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
-					}
-					if(gos[i].textContent == "Resume"){
-						gos[i].parentElement.style.marginTop = "0.8em";
-						gos[i].parentElement.style.paddingBottom = "0.8em";
-						gos[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
-					}
-					if(gos[i].textContent == "Linkedin"){
-						gos[i].parentElement.style.marginTop = "0.8em";
-					}
-				};
-
-				var files = document.querySelectorAll(".file");
-				for (var i = files.length - 1; i >= 0; i--) {
-					if (files[i].textContent == "Watch App design.pdf") {
-						console.log("files[i]ssssss", files[i].parentElement);	
-						files[i].parentElement.style.marginTop = "0.3em";
-						files[i].parentElement.style.paddingBottom = "0.8em";
-						files[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
-					};
-
-					if (files[i].textContent == "Case study.pdf") {
-						console.log("files[i]ssssss", files[i].parentElement);	
-						files[i].parentElement.style.marginTop = "0.8em";
-						// files[i].parentElement.style.paddingBottom = "0.3em";
-						// files[i].parentElement.style.borderBottom = "3px solid #fff";
-					};
-
-					if (files[i].textContent == "Interface critique.pdf") {
-						console.log("files[i]ssssss", files[i].parentElement);	
-						files[i].parentElement.style.marginTop = "0.3em";
-						files[i].parentElement.style.paddingBottom = "0.8em";
-						files[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
-					};
-					if (files[i].textContent == "Kiosk Design.pdf") {
-						console.log("files[i]ssssss", files[i].parentElement);	
-						files[i].parentElement.style.marginTop = "0.8em";
-					};
-				};
 			})
 			
 		};
