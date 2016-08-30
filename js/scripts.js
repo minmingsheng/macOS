@@ -548,7 +548,7 @@ var Desktop = {
 		var a = document.querySelector('.plsopen');
 		a.addEventListener("click", function(){
 			var app = document.querySelector(".icons[data-id='icatalogue']");
-			app.style.animation = "openApp 1.1s 4  ease";
+			app.style.animation = "openApp 1.1s 2  ease";
 			// app.style.width = width + "px";
 			app.style.transform = "translate(0,0)";
 			app.style.transiition = "all 0.5s ease";
@@ -1513,7 +1513,7 @@ var Dock = {
 				if(dd== 'finderIcon' || dd=="githubIcon" ||dd == "LinkedIcon"){
 					return
 				}
-				this.style.animation = "openApp 1.1s 4  ease";
+				this.style.animation = "openApp 1.1s 2  ease";
 				if(this.nextSibling){
 					this.nextSibling.style.width = width+"px";
 					this.nextSibling.style.transform = "translate(0,0)"
