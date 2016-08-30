@@ -440,18 +440,15 @@ var LogIn = {
 	},
 	click: function(){
 		var c = this.el.querySelector('.circle');
-		console.info("ccccc:", c);
 		c.addEventListener("click", onclick);
 		c.addEventListener("touchstart", onclick);
 		function onclick(){
-			console.info(this);
 			Input.addFn();
 		}
 
 		var sleep = document.querySelector(".sleep");
 		sleep.style.cursor = "pointer";
 		sleep.addEventListener("click", function(){
-			console.log(this,"!!!!!!!");
 			var div = document.createElement("div");
 			div.classList.add("sleepbg");
 			div.addEventListener("click", function(){
@@ -464,14 +461,12 @@ var LogIn = {
 		shut.style.cursor = "pointer";
 		shut.addEventListener("click", function(){
 			open(location, '_self').close();
-			console.log(this,"!!!!!!!");
 		})
 
 		var restart = document.querySelector(".restart");
 		restart.style.cursor = "pointer";
 		restart.addEventListener("click", function(){
 			location.reload();
-			console.log(this,"!!!!!!!");
 		})
 
 
@@ -507,7 +502,6 @@ var Input = {
 			if(e.keyCode == 13) {
 				addLoad();
 				this.parentElement.parentElement.remove();
-				console.log(this.parentElement.parentElement);
 				setTimeout(function(){
 					LogIn.el.remove();
 					Desktop.addFn(); /*<----------------*/
@@ -563,15 +557,12 @@ var Desktop = {
 			animated(app, function(){
 				app.style.animation = "";
 				 /*open safiri*/
-				 console.log("openeeneennnnn!");
 				Safari.addFn("http://sheng.design/catalogue","catalogue");
 				Safari.close();
 				Safari.max();
 			})
-			console.log("appppppp:", app);
 			this.parentElement.parentElement.parentElement.remove();
 		})
-		console.log("a:::::",a);
 	}
 
 }
@@ -584,7 +575,6 @@ var Folder = {
 		this.el = document.createElement("div");
 		this.el.setAttribute("data-id", name.replace(" ", '').toLowerCase())
 
-		console.log("jaosn");
 		this.el.classList.add(this.className[0]);
 		this.el.innerHTML = "";
 
@@ -602,10 +592,8 @@ var Folder = {
 
 		/*open folder*/
 		this.el.addEventListener("dblclick", function(){
-			console.log("folder:",this.textContent);
 			var folderName = this.textContent;
 			var id = folderName.replace(" ", "").toLowerCase();
-			console.log("iddidididd", id);
 			Finder.addFn(folderName, id);
 		})
 
@@ -617,7 +605,6 @@ var Folder = {
 		var drag = false;
 		this.el.addEventListener("mousedown", mousedown, true)
 		function mousedown (e) {
-			// console.log(this);
 			var _this = this; 
 			var _width = _this.getClientRects()[0].width;
 			var _height = _this.getClientRects()[0].height;
@@ -625,12 +612,9 @@ var Folder = {
 			var _top = _this.getClientRects()[0].top;
 			var _distanceX = e.clientX-_left;
 			var _distanceY = e.clientY-_top;
-			console.log(_distanceX);
-			console.log(_distanceY);
 			this.style.cursor = "default";
 			// this.parentElement.style.zIndex += 20;
 			window.onmousemove = function(e){
-				// console.log("adasdasdasasdadsas");
 				var _x = Math.max(e.clientX-_distanceX);
 				var _y = Math.max(25,e.clientY-_distanceY);
 				// var _window  = _this.parentElement;
@@ -774,7 +758,6 @@ var Finder = {
 					};
 					this.classList.add("llactive");
 					var rp = this.parentElement.parentElement.querySelector(".rightPart");
-					console.log(":thishishitishtishtsitsihtsith",  rp);
 					rp.innerHTML = "";
 
 
@@ -825,7 +808,6 @@ var Finder = {
 		var bar0 = document.querySelectorAll(".resizeBar0");
 		for (var i = 0; i < bar0.length; i++) {
 				bar0[i].addEventListener("mouseenter", function(){
-				console.log(this.parentElement);
 				var target = this.parentElement;
 				this.style.cursor= "n-resize";
 				this.addEventListener("mousedown", function(){
@@ -846,7 +828,6 @@ var Finder = {
 		var bar2 = document.querySelectorAll(".resizeBar2");
 		for (var i = 0; i < bar2.length; i++) {
 				bar2[i].addEventListener("mouseenter", function(){
-				console.log(this.parentElement);
 				var target = this.parentElement;
 				this.style.cursor= "s-resize";
 				this.addEventListener("mousedown", function(){
@@ -866,7 +847,6 @@ var Finder = {
 		var bar1 = document.querySelectorAll(".resizeBar1");
 		for (var i = 0; i < bar1.length; i++) {
 			bar1[i].addEventListener("mouseenter", function(){
-			console.log(this.parentElement);
 			var target = this.parentElement;
 			this.style.cursor= "e-resize";
 			this.addEventListener("mousedown", function(e){
@@ -885,7 +865,6 @@ var Finder = {
 		var bar3 = document.querySelectorAll(".resizeBar3");
 		for (var i = 0; i < bar3.length; i++) {
 			bar3[i].addEventListener("mouseenter", function(){
-			console.log(this.parentElement);
 			var target = this.parentElement;
 			this.style.cursor= "w-resize";
 			this.addEventListener("mousedown", function(e){
@@ -907,7 +886,6 @@ var Finder = {
 		var bar4 = document.querySelectorAll(".resizeBar4");
 		for (var i = 0; i < bar4.length; i++) {
 			bar4[i].addEventListener("mouseenter", function(){
-			console.log(this.parentElement);
 			var target = this.parentElement;
 			this.style.cursor= "nw-resize";
 			this.addEventListener("mousedown", function(e){
@@ -935,7 +913,6 @@ var Finder = {
 		var bar5 = document.querySelector(".resizeBar5");
 		for (var i = 0; i < bar5.length; i++) {
 			bar5[i].addEventListener("mouseenter", function(){
-			console.log(this.parentElement);
 			var target = this.parentElement;
 			this.style.cursor= "ne-resize";
 			this.addEventListener("mousedown", function(e){
@@ -965,7 +942,6 @@ var Finder = {
 		var bar6 = document.querySelectorAll(".resizeBar6");
 		for (var i = 0; i < bar6.length; i++) {
 			bar6[i].addEventListener("mouseenter", function(){
-			console.log(this.parentElement);
 			var target = this.parentElement;
 			this.style.cursor= "se-resize";
 			this.addEventListener("mousedown", function(e){
@@ -992,7 +968,6 @@ var Finder = {
 		var bar7 = document.querySelector(".resizeBar7");
 		for (var i = 0; i < bar7.length; i++) {
 			bar7[i].addEventListener("mouseenter", function(){
-			console.log(this.parentElement);
 			var target = this.parentElement;
 			this.style.cursor= "sw-resize";
 			this.addEventListener("mousedown", function(e){
@@ -1037,8 +1012,6 @@ var Finder = {
 			var _top = _this.getClientRects()[0].top;
 			var _distanceX = e.clientX-_left;
 			var _distanceY = e.clientY-_top;
-			console.log(_distanceX);
-			console.log(_distanceY);
 			this.style.cursor = "default";
 			// this.parentElement.style.zIndex += 20;
 			window.onmousemove = function(e){
@@ -1072,9 +1045,7 @@ var Finder = {
 		/*check the satus of layout*/
 		for (var i = 0; i < btns.length; i++) {
 			var temp = btns[i].querySelector('img').getAttribute("src");
-			console.log("temp", new RegExp("active").test(temp));
 			if(new RegExp("active").test(temp)){
-				console.log("this:", this.el);
 				this.swipeLayout(this.el, folderid)
 			}
 		}
@@ -1086,7 +1057,6 @@ var Finder = {
 					btns[j].querySelector('img').setAttribute("src", layoutBtnImg[j])
 				};
 				var src = this.querySelector("img").getAttribute("src");
-				console.log("this.getAttribute",  new RegExp("swipe").test(src));
 				var boss = target.parentElement.parentElement.parentElement;
 				if(new RegExp("block").test(src)){
 					// _this.blockLayout(boss);<<<<<<<<<<<<<
@@ -1104,21 +1074,18 @@ var Finder = {
 	},
 
 	blockLayout: function(boss){
-		console.log("block", boss);
 		var t = boss.querySelector(".rightPart");
 		t.innerHTML = "";
 		t.textContent = "block"
 	},
 
 	listLayout: function(boss){
-		console.log("list", boss);
 		var t = boss.querySelector(".rightPart");
 		t.innerHTML = "";
 		t.textContent = "list"
 	},
 
 	swipeLayout: function(boss, folderid){
-		console.log("swipe!!!!!!!", folderid);
 		var t = boss.querySelector(".rightPart");
 		t.innerHTML = "";
 		// t.textContent  = "swipe"; 
@@ -1132,7 +1099,6 @@ var Finder = {
 		var folderid = eval(folderid);
 		for (var i = 0; i < folderid.length; i++) {
 			var imgList = document.createElement("li");
-			console.info(folderid[i]);
 			imgList.innerHTML = "<img class='activeImg' src="+  folderid[i].src +" />"
 			imgContainer.appendChild(imgList);
 		};
@@ -1168,7 +1134,6 @@ var Finder = {
 				a.classList.add("check");
 				a.textContent = "check";
 				a.addEventListener("click", function(){
-					console.log("this.getAttribute('href')", this.getAttribute("href"));
 					Safari.addFn(this.getAttribute("href"), this.getAttribute("href"));
 					Safari.close();
 					Safari.max();
@@ -1205,7 +1170,6 @@ var Finder = {
 
 		t.appendChild(down);
 
-		console.log("target,", t);
 
 		this.swipe();
 		this.clickDownList();
@@ -1217,8 +1181,6 @@ var Finder = {
 		for (var i = 0; i < l.length; i++) {
 			
 			l[i].addEventListener('mousedown', function(){
-				console.log("asdadasdasa", this.getAttribute("data-id"));
-				console.log("flip",flip);
 				var num = parseInt(this.getAttribute("data-id"));
 				flip.flipster('jump',num)
 				/*clean*/
@@ -1231,9 +1193,7 @@ var Finder = {
 				};
 				/*acttive blue bakground*/
 				// var target = this.children[0].textContent;
-				// console.log("target", target);
 				// var pics = _this.el.querySelectorAll(".imgContainer div");
-				// console.log("pics.", pics);
 				// for (var i = 0; i < pics.length; i++) {
 				// 	var temp = pics[i].innerHTML;
 				// 	if(new RegExp(target).test(temp)){
@@ -1254,7 +1214,6 @@ var Finder = {
 				// 					clearInterval(move)
 				// 				}
 				// 			}, 1)
-				// 			console.log("ad11~~~~~~~");
 				// 		}, 222)
 
 				// 		break;
@@ -1271,7 +1230,6 @@ var Finder = {
 		
 		// this.el.addEventListener("keydown", function(e){
 		// 	e.preventDefault();
-		// 	console.log(e.keyCode);
 		// })
 	},
 	swipe:function(){
@@ -1289,12 +1247,10 @@ var Finder = {
 	},
 	activePic: function(){
 		var pic =  document.querySelectorAll(".activeImg");
-		console.log("pcipcipcipic,", pic);
 		var _this = this;
 		for (var i = pic.length - 1; i >= 0; i--) {
 			pic[i].addEventListener("dblclick", function(){
 				var src = this.getAttribute("src");
-				// console.log("srcsrcccccc:", src);
 				// var div = document.createElement("div");
 				// div.innerHTML = "<img style='width:80%' src="+ src+" />"
 				// div.style.position  = "absolute";
@@ -1345,8 +1301,6 @@ var Finder = {
 			var _top = title.parentElement.getClientRects()[0].top;
 			var _distanceX = e.clientX-_left;
 			var _distanceY = e.clientY-_top;
-			console.log("adandasdnNNUM", title.parentElement);
-			console.log("adandasdnNNUM", title.parentElement);
 			this.style.cursor = "default";
 			// this.parentElement.style.zIndex += 20;
 			window.onmousemove = function(e){
@@ -1473,8 +1427,6 @@ var Dock = {
 			icons[i].addEventListener("mouseenter", function(e){
 
 
-				console.log(this.nextSibling);
-				console.log(this.previousSibling);
 				if(this.nextSibling){
 					this.nextSibling.style.width = m + "rem"
 					this.nextSibling.style.transform = "translate(0,"+mh+"em)"
@@ -1506,7 +1458,6 @@ var Dock = {
 
 			/* open safari */
 			icons[i].addEventListener('click', function(){
-				console.log("this.dataset.id", this.dataset.id);
 				var dd = this.dataset.id;
 				var _this = this;
 				var url = function(){
@@ -1534,7 +1485,6 @@ var Dock = {
 					        break;
 					    case "githubIcon":
 					        	window.open("https://github.com/minmingsheng", '_blank'); 
-					        	console.log("asdasdasddasdasdasdsadasdasd");
 					        return [null, null];
 					        break;
 					    case "LinkedIcon":
@@ -1543,7 +1493,6 @@ var Dock = {
 					        break;
 					    case "finderIcon":
 					    	
-					    	console.log("document.querySelectorAll(folder)", document.querySelectorAll(".folder"));
 					    	var ss = _this.getClientRects()[0].width;
 					    	_this.style.width = width + "px";
 					    	_this.style.transform = "translate(0,0)";
@@ -1698,8 +1647,6 @@ var Safari = {
 			var _top = _this.getClientRects()[0].top;
 			var _distanceX = e.clientX-_left;
 			var _distanceY = e.clientY-_top;
-			console.log(_distanceX);
-			console.log(_distanceY);
 			this.style.cursor = "default";
 			// this.parentElement.style.zIndex += 20;
 			window.onmousemove = function(e){
@@ -1749,8 +1696,6 @@ var Safari = {
 					_top = this.parentElement.parentElement.parentElement.getClientRects()[0].top;
 					_width = this.parentElement.parentElement.parentElement.getClientRects()[0].width;
 					_height = this.parentElement.parentElement.parentElement.getClientRects()[0].height;
-					console.log("temp",_left);
-					console.log("temp",_top);
 					this.parentElement.parentElement.parentElement.style.transition = "all 0.4s ease";
 					this.parentElement.parentElement.parentElement.style.width = window.innerWidth+ "px";
 					this.parentElement.parentElement.parentElement.style.height = (window.innerHeight-60) + "px";
@@ -1843,8 +1788,6 @@ var toolBarMenu = {
 		var days = ["Sun","Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 		var months = ["Jan","Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 		var currentTime = new Date();
-		console.log(days[currentTime.getDay()]);
-		console.log(months[currentTime.getMonth()]);
 		document.querySelector(".day").innerHTML = days[currentTime.getDay()];
 		document.querySelector(".month").innerHTML = months[currentTime.getMonth()];
 		setInterval(function(){
@@ -1880,13 +1823,11 @@ var toolBarMenu = {
 		menu = menu.children[0].children;
 		for (var i = 0; i < menu.length; i++) {
 			// menu[i].classList.add("submenu");
-			console.log(menu[i].textContent);
 			var ja = "close";
 			var fi = "close";
 			var go = "close";
 			var ab = "close";
 			menu[i].addEventListener("click", function(){
-				console.log("document.querySelectorAll('submenu')",document.querySelectorAll('.submenu'));
 				var submenus = document.querySelectorAll('.submenu');
 				/*remove all*/
 				for (var i = submenus.length - 1; i >= 0; i--) {
@@ -1917,7 +1858,6 @@ var toolBarMenu = {
 						sub.classList.add("submenu");
 						document.querySelector(".desktop").appendChild(sub);
 						var gos = document.querySelectorAll(".go");
-						// console.log("gos", gos);
 						for (var i = gos.length - 1; i >= 0; i--) {
 							if(gos[i].textContent == "Project Catalogue"){
 								gos[i].parentElement.style.marginTop = "0.3em";
@@ -1994,31 +1934,26 @@ var toolBarMenu = {
 						};
 						sub.classList.add("submenu");
 						document.querySelector(".desktop").appendChild(sub);
-						console.log("open:", ab);
 						var aboutmes = document.querySelectorAll(".aboutme");
 						for (var i = aboutmes.length - 1; i >= 0; i--) {
 							if (aboutmes[i].textContent == "Contact") {
-								console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
 								aboutmes[i].parentElement.style.marginTop = "0.3em!important";
 								aboutmes[i].parentElement.style.paddingBottom = "0.8em!important";
 								aboutmes[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)!important";
 							};
 
 							if (aboutmes[i].textContent == "Good education") {
-								console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
 								aboutmes[i].parentElement.style.marginTop = "0.8em";
 								// aboutmes[i].parentElement.style.paddingBottom = "0.3em";
 								// aboutmes[i].parentElement.style.borderBottom = "3px solid #fff";
 							};
 
 							if (aboutmes[i].textContent == "Based in Toronto") {
-								console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
 								aboutmes[i].parentElement.style.marginTop = "0.3em";
 								aboutmes[i].parentElement.style.paddingBottom = "0.8em";
 								aboutmes[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
 							};
 							if (aboutmes[i].textContent == "UX/UI designer") {
-								console.log("aboutmes[i]ssssss", aboutmes[i].parentElement);	
 								aboutmes[i].parentElement.style.marginTop = "0.8em";
 							};
 						};
@@ -2030,7 +1965,6 @@ var toolBarMenu = {
 							submenus[i].remove();
 						};
 						ab = "close";
-						console.log("close:", ab);
 
 						return;
 					}
@@ -2132,27 +2066,23 @@ var toolBarMenu = {
 						var files = document.querySelectorAll(".file");
 						for (var i = files.length - 1; i >= 0; i--) {
 							if (files[i].textContent == "Watch App design.pdf") {
-								console.log("files[i]ssssss", files[i].parentElement);	
 								files[i].parentElement.style.marginTop = "0.3em";
 								files[i].parentElement.style.paddingBottom = "0.8em";
 								files[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
 							};
 
 							if (files[i].textContent == "Case study.pdf") {
-								console.log("files[i]ssssss", files[i].parentElement);	
 								files[i].parentElement.style.marginTop = "0.8em";
 								// files[i].parentElement.style.paddingBottom = "0.3em";
 								// files[i].parentElement.style.borderBottom = "3px solid #fff";
 							};
 
 							if (files[i].textContent == "Interface critique.pdf") {
-								console.log("files[i]ssssss", files[i].parentElement);	
 								files[i].parentElement.style.marginTop = "0.3em";
 								files[i].parentElement.style.paddingBottom = "0.8em";
 								files[i].parentElement.style.borderBottom = "2px solid rgba(225,225,225,0.5)";
 							};
 							if (files[i].textContent == "Kiosk Design.pdf") {
-								console.log("files[i]ssssss", files[i].parentElement);	
 								files[i].parentElement.style.marginTop = "0.8em";
 							};
 						};
@@ -2182,7 +2112,6 @@ var toolBarMenu = {
 			})
 			
 		};
-		console.log("menu.children:", menu);
 	},
 
 
@@ -2203,7 +2132,6 @@ var sideMenu = {
 		today.addEventListener("click", onMouseDownT);
 		notifications.addEventListener("click", onMouseDownN);
 		function onMouseDownT(){
-			console.log("todayContainer.el",todayContainer.el);
 			var b = new RegExp("activeTab").test(this.className);
 			if(b){
 				//when today tab already actived, set light color when active
@@ -2316,7 +2244,6 @@ var todayTitle = {
 		var _this = this;
 		ajax("resume.json", function(xhttp){
 			resume = JSON.parse(xhttp.responseText);
-			console.log(resume);
 			for(var prop in resume){
 				var title = document.createElement("div");
 				title.classList.add(prop.replace(" ", ''));
@@ -2337,12 +2264,10 @@ var todayTitle = {
 					title.appendChild(text);
 
 				}else if(prop == "Proficiencies"){
-					console.log("Proficiencies:", resume[prop]);
 					var text = document.createElement("div");
 					text.classList.add("pros");
 					for(var prolist in resume[prop]){
 						/*get title of proficiency, eg: Graphic/programming/other*/
-						console.log("prolist:", resume[prop][prolist]);
 						var prolistEl =  document.createElement("div");
 						prolistEl.innerHTML = "<h5>"+prolist+"</h5>";
 						resume[prop][prolist].map(function(e){
@@ -2397,8 +2322,6 @@ var infoWindow = {
 			var _top = _this.getClientRects()[0].top;
 			var _distanceX = e.clientX-_left;
 			var _distanceY = e.clientY-_top;
-			console.log(_distanceX);
-			console.log(_distanceY);
 			this.style.cursor = "default";
 			// this.parentElement.style.zIndex += 20;
 			window.onmousemove = function(e){
